@@ -1,40 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Channel Guide QR Code</title>
     <style>
+        /* Basic reset */
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            height: 100%;
+            overflow-x: hidden; /* Prevent horizontal overflow */
         }
+
+        /* Light string background animation */
+        .light-string {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0.6) 0%, rgba(0,255,255,0.6) 50%, rgba(255,255,255,0.6) 100%);
+            background-size: 200% 200%;
+            animation: moveLights 6s linear infinite;
+            z-index: -1; /* Behind all other content */
+        }
+
+        /* Keyframes for the light string effect */
+        @keyframes moveLights {
+            0% {
+                background-position: 100% 0;
+            }
+            100% {
+                background-position: 0 0;
+            }
+        }
+
         h1 {
-            text-align: center;
+            margin-top: 20px;
             color: #0056b3;
+            font-size: 36px;
+            text-align: center;
+            z-index: 1; /* Ensure title is on top */
         }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+            padding: 0 10px;
+        }
+
+        img {
+            width: 100%;
+            max-width: 600px; /* Restrict the size to a maximum width */
+            height: auto;
+            margin-top: 20px;
+            z-index: 1; /* Ensure image is on top */
+        }
+
         .pdf-link {
             display: block;
-            text-align: center;
             margin-top: 20px;
             font-size: 16px;
             color: #0056b3;
             text-decoration: none;
+            z-index: 1; /* Ensure link is on top */
         }
+
         .pdf-link:hover {
             text-decoration: underline;
         }
 
+        /* Footer styling for additional info */
+        .footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #777;
+            z-index: 1; /* Ensure footer is on top */
+        }
     </style>
 </head>
 <body>
-    <h1>Channel Guide QR Code</h1>
-    <p>Click the link below to download the Channel Guide PDF.</p>
-    <img src="Channel Guide_page-0001.jpg" alt="QR Code">
-    <!-- Link to download PDF -->
-    <a class="pdf-link" href="/Users/prashanthkunchanapalli/QRCODE/Channel_Guide_QR_Code.png" target="_blank">Download Channel Guide PDF</a>
+<h1>Comfort Suites <br> MANAGER @SHANE PATEL </h1>
 
+<!-- Light string background animation -->
+<div class="light-string"></div>
+
+<div class="container">
+    <img src="Channel Guide_page-0001.jpg" alt="QR Code">
+    <div class="footer">
+        <p>Find us : 121 Raydo Circle, Springfield, OH, 45506, US</p>
+        <p>@ 2025 right reserved by Comfort suites Springfield Ohio </p>
+    </div>
+</div>
 
 </body>
 </html>
