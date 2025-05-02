@@ -1,104 +1,642 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Channel Guide QR Code</title>
+    <title>Comfort Suites TV Channel Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Basic reset */
-        body {
+        :root {
+            --primary: #0056b3;
+            --primary-light: #4d8fd6;
+            --secondary: #ff7e33;
+            --accent: #00c3ff;
+            --dark: #1a2b50;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            height: 100%;
-            overflow-x: hidden; /* Prevent horizontal overflow */
+            box-sizing: border-box;
         }
 
-        /* Light string background animation */
-        .light-string {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, rgba(255,255,255,0.6) 0%, rgba(0,255,255,0.6) 50%, rgba(255,255,255,0.6) 100%);
-            background-size: 200% 200%;
-            animation: moveLights 6s linear infinite;
-            z-index: -1; /* Behind all other content */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Keyframes for the light string effect */
-        @keyframes moveLights {
-            0% {
-                background-position: 100% 0;
-            }
-            100% {
-                background-position: 0 0;
-            }
+        /* Header styles */
+        header {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hotel-logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 1rem;
+            filter: drop-shadow(var(--shadow));
         }
 
         h1 {
-            margin-top: 20px;
-            color: #0056b3;
-            font-size: 36px;
-            text-align: center;
-            z-index: 1; /* Ensure title is on top */
+            font-family: 'Playfair Display', serif;
+            color: var(--white);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
         }
 
-        .container {
+        .manager {
+            font-weight: 600;
+            font-size: 1.1rem;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        /* Main content */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .guide-container {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .guide-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
             text-align: center;
-            height: 100%;
-            padding: 0 10px;
+            font-size: 1.5rem;
+            font-weight: 600;
         }
 
-        img {
+        /* Channel Guide Table Styles */
+        .channel-table {
             width: 100%;
-            max-width: 600px; /* Restrict the size to a maximum width */
-            height: auto;
-            margin-top: 20px;
-            z-index: 1; /* Ensure image is on top */
+            border-collapse: collapse;
+            font-size: 1rem;
         }
 
-        .pdf-link {
-            display: block;
-            margin-top: 20px;
-            font-size: 16px;
-            color: #0056b3;
-            text-decoration: none;
-            z-index: 1; /* Ensure link is on top */
+        .channel-table th {
+            background-color: var(--primary-light);
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            position: sticky;
+            top: 0;
         }
 
-        .pdf-link:hover {
-            text-decoration: underline;
+        .channel-table tr:nth-child(even) {
+            background-color: #f2f2f2;
         }
 
-        /* Footer styling for additional info */
-        .footer {
-            margin-top: 40px;
-            font-size: 14px;
+        .channel-table tr:hover {
+            background-color: #e6f0ff;
+        }
+
+        .channel-table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .channel-number {
+            font-weight: bold;
+            color: var(--primary);
+            width: 80px;
+        }
+
+        .channel-name {
+            font-weight: 600;
+        }
+
+        .channel-category {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        /* Search and Filter */
+        .search-filter {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
             color: #777;
-            z-index: 1; /* Ensure footer is on top */
+        }
+
+        .category-filter {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 8px 15px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Table container with scroll */
+        .table-container {
+            max-height: 600px;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        /* Loading state */
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            font-style: italic;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .address {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-link {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .channel-table {
+                font-size: 0.8rem;
+            }
+
+            .channel-table td, .channel-table th {
+                padding: 8px 5px;
+            }
         }
     </style>
 </head>
 <body>
-<h1>Comfort Suites <br> MANAGER @SHANE PATEL </h1>
+<header>
+    <img src="logo.png" alt="Comfort Suites Logo" class="hotel-logo">
+    <p>TV Channel Guide</p>
+    <p class="manager">
+        <i class="fas fa-user-tie"></i> MANAGER: SHANE PATEL
+    </p>
+</header>
 
-<!-- Light string background animation -->
-<div class="light-string"></div>
-
-<div class="container">
-    <img src="Channel Guide_page-0001.jpg" alt="QR Code">
-    <div class="footer">
-        <p>Find us : 121 Raydo Circle, Springfield, OH, 45506, US</p>
-        <p>@ 2025 right reserved by Comfort suites Springfield Ohio </p>
+<main class="container">
+    <div class="search-filter">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search channels..." onkeyup="searchChannels()">
+        </div>
+        <div class="category-filter" id="categoryFilter">
+            <!-- Categories will be dynamically generated -->
+        </div>
     </div>
-</div>
 
+    <div class="guide-container">
+        <div class="guide-header">
+            <i class="fas fa-tv"></i> Comfort Suites Channel Lineup
+        </div>
+        <div class="table-container">
+            <table class="channel-table" id="channelTable">
+                <thead>
+                <tr>
+                    <th>Channel</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody id="channelTableBody">
+                <tr>
+                    <td colspan="4" class="loading">Loading channel guide...</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <img src="logo.png" alt="Comfort Suites Logo" class="footer-logo">
+        <div class="address">
+            <p><i class="fas fa-map-marker-alt"></i> 121 Raydo Circle, Springfield, OH, 45506, US</p>
+            <p><i class="fas fa-phone"></i> (937) 123-4567</p>
+        </div>
+
+        <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-tripadvisor"></i></a>
+        </div>
+
+        <p class="copyright">© 2025 Comfort Suites Springfield Ohio. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // CSV data (this would normally be fetched from a file)
+    const csvData = `channel,name,category,description
+3,GUIDELO,Guide,Interactive channel guide for navigating TV services.
+6,ABC,Entertainment,National network offering dramas, comedies, news, and reality shows.
+7,ABC2,Entertainment,Secondary ABC channel with additional programming and local content.
+8,CBS,Entertainment,Features dramas, sitcoms, news, and sports events.
+10,FOX,Entertainment,Provides a mix of dramas, reality TV, sports, and news.
+12,NBC,Entertainment,Offers popular shows, sports, and national news broadcasts.
+13,NBC2,Entertainment,Secondary NBC channel with varied programming and local focus.
+14,CW,Entertainment,Airs youth-oriented dramas, comedies, and reality shows.
+15,CW2,Entertainment,Additional CW channel with similar programming and specials.
+16,PBS,Educational,Public broadcasting with educational, cultural, and documentary programs.
+17,PBS2,Educational,Secondary PBS channel with more educational content and kids' shows.
+36,ION,Entertainment,Features syndicated shows, movies, and original dramas.
+37,METV,Entertainment,Classic TV network with retro shows and nostalgic programming.
+38,MYNET,Entertainment,Offers syndicated series, sports, and movies.
+41,TELEM,International,Spanish-language network with telenovelas, news, and sports.
+42,UNIMAS,International,Spanish-language channel with movies, sports, and dramas.
+43,UNV,International,Spanish-language network with entertainment and news.
+44,DYSTR,Entertainment,Daystar provides Christian programming and inspirational content.
+45,TBN,Religious,Christian network with sermons, talk shows, and family-friendly content.
+51,RSN,Sports,Regional sports network covering local teams and events.
+52,RSN,Sports,Additional regional sports channel for local games and analysis.
+57,GUIDED1,Guide,Additional interactive channel guide service.
+58,USA,Entertainment,Features dramas, comedies, and live sports events.
+59,AETV,Entertainment,Reality TV and documentaries focusing on real-life stories.
+60,TNT,Entertainment,Airs dramas, movies, and major sports events.
+61,TBS,Entertainment,Comedy-focused channel with sitcoms and movies.
+62,AMC,Movies,Features classic and contemporary films and original series.
+63,DSC,Educational,Discovery Channel offers science, nature, and adventure documentaries.
+64,HISTORY,Educational,Documentaries and series on historical events and figures.
+65,FX,Entertainment,Original dramas, comedies, and blockbuster movies.
+66,BBCA,Entertainment,British programming including dramas, comedies, and sci-fi.
+67,SYFY,Entertainment,Science fiction, fantasy, and horror series and films.
+68,TRUTV,Entertainment,Reality shows and comedic programming.
+69,COMEDY,Entertainment,Comedy Central airs stand-up, sketches, and sitcoms.
+70,PAR,Entertainment,Paramount Network offers dramas and reality shows.
+71,VH1,Music,Music videos, reality shows, and pop culture programming.
+72,MTV,Music,Music videos, reality TV, and youth-oriented series.
+73,TVLAND,Entertainment,Classic and modern sitcoms with a nostalgic feel.
+75,HALL,Movies,Heartwarming movies and family-friendly series.
+76,NGC,Educational,National Geographic features wildlife and cultural documentaries.
+77,APL,Educational,Animal Planet focuses on animal-related shows and documentaries.
+78,SCIENCE,Educational,Science Channel explores technology, space, and innovation.
+79,AHC,Educational,American Heroes Channel covers military history and stories.
+80,HGTV,Lifestyle,Home and garden renovation and design shows.
+81,FOOD,Lifestyle,Food Network offers cooking shows and culinary competitions.
+82,TRAV,Lifestyle,Travel Channel showcases destinations and adventure travel.
+83,TLC,Lifestyle,Reality shows on family, lifestyle, and personal stories.
+84,BRAVO,Entertainment,Reality TV, dramas, and lifestyle programming.
+85,EI,Entertainment,E! focuses on celebrity news and pop culture shows.
+86,LIFE,Movies,Lifetime airs women-centric movies and dramas.
+87,OWN,Lifestyle,Oprah Winfrey Network with inspirational and lifestyle content.
+88,BET,Entertainment,Black Entertainment Television offers music, series, and movies.
+89,OVATION,Entertainment,Arts and culture programming with films and performances.
+90,CNN,News,24/7 news covering global events and politics.
+91,FNC,News,Fox News Channel provides conservative news and commentary.
+92,MSNBC,News,News and analysis with a progressive perspective.
+93,HLN,News,Headline News offers crime stories and news updates.
+94,CNBC,News,Business and financial news and talk shows.
+95,FBN,News,Fox Business Network covers markets and economic news.
+96,BLOOM,News,Bloomberg Television focuses on global finance and business.
+97,WEATH,News,Weather Channel provides forecasts and weather news.
+98,CSPAN,News,Public affairs and government proceedings coverage.
+99,DISN,Kids,Disney Channel offers family-friendly shows and movies.
+100,BOOM,Kids,Boomerang airs classic and new animated series.
+102,UKIDS,Kids,Universal Kids provides educational and fun kids' programming.
+103,NICKJR,Kids,Nick Jr. offers preschool-friendly shows and learning content.
+104,NICK,Kids,Nickelodeon features animated and live-action kids' shows.
+105,TOON,Kids,Cartoon Network airs animated series and movies.
+106,DFC,Kids,Disney Junior provides programming for young children.
+107,CMT,Music,Country Music Television with music videos and shows.
+108,GACF,Lifestyle,Great American Country focuses on country lifestyle and music.
+109,ESPN,Sports,Leading sports network with live events and analysis.
+110,ESPN2,Sports,Secondary ESPN channel with additional sports coverage.
+111,GUIDED2,Guide,Another interactive channel guide service.
+112,TNF,Sports,Thursday Night Football broadcasts NFL games.
+113,SEC,Sports,SEC Network covers Southeastern Conference sports.
+114,FS1,Sports,Fox Sports 1 offers live sports and commentary.
+115,FS2,Sports,Fox Sports 2 provides extended sports coverage.
+116,MT,Music,MTV with music videos and reality programming.
+117,TCM,Movies,Turner Classic Movies airs classic films.
+118,HSN,Shopping,Home Shopping Network for retail and product showcases.
+119,EWTN,Religious,Global Catholic network with religious programming.
+120,SHOPHQ,Shopping,Shopping channel with jewelry, electronics, and more.
+121,QVC,Shopping,Retail channel offering a variety of products.
+122,CNNE,International,Spanish-language CNN with global news.
+123,NEWSNTN,News,NewsNation provides balanced news coverage.
+124,MTV2,Music,MTV2 focuses on music videos and alternative content.
+125,MTVCLAS,Music,MTV Classic airs retro music videos and shows.
+126,UP,Religious,Uplifting family-friendly movies and series.
+128,RFDHD,Lifestyle,Rural-focused programming on farming and country life.
+129,VICE,Entertainment,Documentaries and series on culture and lifestyle.
+130,FYI,Lifestyle,Reality and lifestyle shows on diverse topics.
+131,DEST,Lifestyle,Destination America explores American culture and travel.
+132,ID,Educational,Investigation Discovery focuses on true crime stories.
+133,ACUWTHR,News,AccuWeather provides detailed weather forecasts.
+134,COOK,Lifestyle,Cooking Channel offers recipes and culinary shows.
+135,OXYGEN,Entertainment,True crime and women-focused reality shows.
+136,WE,Entertainment,WE tv offers reality shows and dramas.
+137,POP,Entertainment,Pop culture-focused shows and light entertainment.
+138,GSN,Entertainment,Game Show Network with classic and new game shows.
+139,LOGO,Entertainment,LGBTQ+-focused programming and movies.
+140,DLC,Educational,Discovery Life covers health and real-life stories.
+141,BHER,Entertainment,BET Her offers content for Black women.
+142,TVONE,Entertainment,Programming focused on African American culture.
+143,BBCWLD,News,BBC World News delivers global news coverage.
+144,NIKTON,Kids,Nicktoons airs animated Nickelodeon series.
+145,TNCK,Kids,TeenNick targets teens with shows and movies.
+147,MTVLIVE,Music,MTV Live broadcasts live music performances.
+148,RVLT,Entertainment,Revolt focuses on hip-hop culture and music.
+149,FUSE,Music,Music videos and pop culture programming.
+150,INSP,Religious,Inspirational programming with family values.
+151,SUNDANC,Movies,SundanceTV airs independent films and series.
+154,LMN,Movies,Lifetime Movie Network with drama and thriller films.
+155,IFC,Movies,Independent Film Channel showcases indie films.
+156,HMM,Movies,Hallmark Movies & Mysteries with mystery films.
+157,BETSOUL,Music,Soul and R&B music videos and programming.
+159,BYUTV,Religious,Family-friendly content from Brigham Young University.
+161,IMPCNET,Movies,Impact Network offers faith-based and family content.
+162,MAGN,Lifestyle,Magnolia Network focuses on home and lifestyle shows.
+163,MTVU,Music,MTV University targets college audiences with music.
+164,NEWSMX,International,Newsmax provides conservative news and talk shows.
+165,BIGTEN,Sports,Big Ten Network covers college sports events.
+166,ACC,Sports,ACC Network focuses on Atlantic Coast Conference sports.
+174,GUIDESP,Guide,Spanish-language interactive channel guide.
+175,BEIN,Sports,beIN Sports covers international soccer and sports.
+177,CBSSN,Sports,CBS Sports Network with college sports and analysis.
+187,ESPND,International,Spanish-language ESPN with sports coverage.
+189,ESPNEWS,Sports,ESPN News provides sports updates and highlights.
+190,ESPNU,Sports,ESPN U focuses on college sports and events.
+191,FXDEP,Sports,Fox Deportes offers Spanish-language sports.
+196,GOLF,Sports,Golf Channel covers professional golf tournaments.
+197,MLBN,Sports,MLB Network with baseball games and analysis.
+198,MLBNSZ,Sports,MLB Network Strike Zone for live baseball highlights.
+199,NBATV,Sports,NBA TV covers basketball games and news.
+200,NFLNET,Sports,NFL Network with football games and analysis.
+201,NFLNRZ,Sports,NFL RedZone provides live NFL game coverage.
+202,NHLNET,Sports,NHL Network covers hockey games and news.
+203,COWBOY,Lifestyle,Cowboy Channel focuses on rodeo and western lifestyle.
+204,OUTD,Sports,Outdoor Channel covers hunting and fishing.
+211,SEC2,Sports,Secondary SEC channel for additional sports coverage.
+212,TENNIS,Sports,Tennis Channel covers professional tennis events.
+213,TVG,Sports,TVG focuses on horse racing and betting.
+214,TUDN,International,Spanish-language sports network with soccer focus.
+215,WILLOW,Sports,Willow TV covers international cricket matches.`;
+
+    // Parse CSV data
+    function parseCSV(csv) {
+        const lines = csv.split('\n');
+        const headers = lines[0].split(',');
+        const result = [];
+
+        for (let i = 1; i < lines.length; i++) {
+            if (!lines[i]) continue;
+
+            const obj = {};
+            const currentline = lines[i].split(',');
+
+            for (let j = 0; j < headers.length; j++) {
+                obj[headers[j]] = currentline[j];
+            }
+
+            result.push(obj);
+        }
+
+        return result;
+    }
+
+    // Display channels in table
+    function displayChannels(channels) {
+        const tableBody = document.getElementById('channelTableBody');
+        tableBody.innerHTML = '';
+
+        if (channels.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="4">No channels found matching your criteria</td></tr>';
+            return;
+        }
+
+        channels.forEach(channel => {
+            const row = document.createElement('tr');
+            row.setAttribute('data-category', channel.category.toLowerCase());
+
+            row.innerHTML = `
+                <td class="channel-number">${channel.channel}</td>
+                <td class="channel-name">${channel.name}</td>
+                <td class="channel-category">${channel.category}</td>
+                <td>${channel.description}</td>
+            `;
+
+            tableBody.appendChild(row);
+        });
+    }
+
+    // Generate category filters
+    function generateCategoryFilters(channels) {
+        const categories = new Set();
+        const filterContainer = document.getElementById('categoryFilter');
+
+        // Extract all unique categories
+        channels.forEach(channel => {
+            categories.add(channel.category);
+        });
+
+        // Create "All" button
+        const allButton = document.createElement('button');
+        allButton.className = 'category-btn active';
+        allButton.textContent = 'All';
+        allButton.onclick = () => filterChannels('all');
+        filterContainer.appendChild(allButton);
+
+        // Create buttons for each category
+        categories.forEach(category => {
+            const button = document.createElement('button');
+            button.className = 'category-btn';
+            button.textContent = category;
+            button.onclick = () => filterChannels(category.toLowerCase());
+            filterContainer.appendChild(button);
+        });
+    }
+
+    // Search functionality
+    function searchChannels() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toUpperCase();
+        const table = document.getElementById('channelTable');
+        const tr = table.getElementsByTagName('tr');
+
+        for (let i = 1; i < tr.length; i++) {
+            const tds = tr[i].getElementsByTagName('td');
+            let found = false;
+
+            for (let j = 0; j < tds.length; j++) {
+                const td = tds[j];
+                if (td) {
+                    const txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        found = true;
+                        break;
+                    }
+                }
+            }
+
+            tr[i].style.display = found ? '' : 'none';
+        }
+    }
+
+    // Filter by category
+    function filterChannels(category) {
+        const rows = document.querySelectorAll('#channelTable tbody tr');
+        const buttons = document.querySelectorAll('.category-btn');
+
+        // Update active button
+        buttons.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.textContent.toLowerCase() === category ||
+               (btn.textContent === 'All' && category === 'all')) {
+                btn.classList.add('active');
+            }
+        });
+
+        // Filter rows
+        rows.forEach(row => {
+            if (category === 'all') {
+                row.style.display = '';
+            } else {
+                row.style.display = row.dataset.category === category.toLowerCase() ? '' : 'none';
+            }
+        });
+    }
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+        // Parse the CSV data
+        const channels = parseCSV(csvData);
+
+        // Display channels and generate filters
+        displayChannels(channels);
+        generateCategoryFilters(channels);
+
+        // If you were loading from an actual CSV file, you would use:
+        /*
+        fetch('Comfort_Suites_TV_Channel_Guide_Structured.csv')
+            .then(response => response.text())
+            .then(csv => {
+                const channels = parseCSV(csv);
+                displayChannels(channels);
+                generateCategoryFilters(channels);
+            })
+            .catch(error => {
+                console.error('Error loading CSV:', error);
+                document.getElementById('channelTableBody').innerHTML =
+                    '<tr><td colspan="4">Error loading channel guide. Please try again later.</td></tr>';
+            });
+        */
+    });
+</script>
 </body>
 </html>

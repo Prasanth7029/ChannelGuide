@@ -1,0 +1,145 @@
+channel,name,category,description
+3,GUIDELO,Guide,Interactive channel guide for navigating TV services.
+6,ABC,Entertainment,National network offering dramas, comedies, news, and reality shows.
+7,ABC2,Entertainment,Secondary ABC channel with additional programming and local content.
+8,CBS,Entertainment,Features dramas, sitcoms, news, and sports events.
+10,FOX,Entertainment,Provides a mix of dramas, reality TV, sports, and news.
+12,NBC,Entertainment,Offers popular shows, sports, and national news broadcasts.
+13,NBC2,Entertainment,Secondary NBC channel with varied programming and local focus.
+14,CW,Entertainment,Airs youth-oriented dramas, comedies, and reality shows.
+15,CW2,Entertainment,Additional CW channel with similar programming and specials.
+16,PBS,Educational,Public broadcasting with educational, cultural, and documentary programs.
+17,PBS2,Educational,Secondary PBS channel with more educational content and kids' shows.
+36,ION,Entertainment,Features syndicated shows, movies, and original dramas.
+37,METV,Entertainment,Classic TV network with retro shows and nostalgic programming.
+38,MYNET,Entertainment,Offers syndicated series, sports, and movies.
+41,TELEM,International,Spanish-language network with telenovelas, news, and sports.
+42,UNIMAS,International,Spanish-language channel with movies, sports, and dramas.
+43,UNV,International,Spanish-language network with entertainment and news.
+44,DYSTR,Entertainment,Daystar provides Christian programming and inspirational content.
+45,TBN,Religious,Christian network with sermons, talk shows, and family-friendly content.
+51,RSN,Sports,Regional sports network covering local teams and events.
+52,RSN,Sports,Additional regional sports channel for local games and analysis.
+57,GUIDED1,Guide,Additional interactive channel guide service.
+58,USA,Entertainment,Features dramas, comedies, and live sports events.
+59,AETV,Entertainment,Reality TV and documentaries focusing on real-life stories.
+60,TNT,Entertainment,Airs dramas, movies, and major sports events.
+61,TBS,Entertainment,Comedy-focused channel with sitcoms and movies.
+62,AMC,Movies,Features classic and contemporary films and original series.
+63,DSC,Educational,Discovery Channel offers science, nature, and adventure documentaries.
+64,HISTORY,Educational,Documentaries and series on historical events and figures.
+65,FX,Entertainment,Original dramas, comedies, and blockbuster movies.
+66,BBCA,Entertainment,British programming including dramas, comedies, and sci-fi.
+67,SYFY,Entertainment,Science fiction, fantasy, and horror series and films.
+68,TRUTV,Entertainment,Reality shows and comedic programming.
+69,COMEDY,Entertainment,Comedy Central airs stand-up, sketches, and sitcoms.
+70,PAR,Entertainment,Paramount Network offers dramas and reality shows.
+71,VH1,Music,Music videos, reality shows, and pop culture programming.
+72,MTV,Music,Music videos, reality TV, and youth-oriented series.
+73,TVLAND,Entertainment,Classic and modern sitcoms with a nostalgic feel.
+75,HALL,Movies,Heartwarming movies and family-friendly series.
+76,NGC,Educational,National Geographic features wildlife and cultural documentaries.
+77,APL,Educational,Animal Planet focuses on animal-related shows and documentaries.
+78,SCIENCE,Educational,Science Channel explores technology, space, and innovation.
+79,AHC,Educational,American Heroes Channel covers military history and stories.
+80,HGTV,Lifestyle,Home and garden renovation and design shows.
+81,FOOD,Lifestyle,Food Network offers cooking shows and culinary competitions.
+82,TRAV,Lifestyle,Travel Channel showcases destinations and adventure travel.
+83,TLC,Lifestyle,Reality shows on family, lifestyle, and personal stories.
+84,BRAVO,Entertainment,Reality TV, dramas, and lifestyle programming.
+85,EI,Entertainment,E! focuses on celebrity news and pop culture shows.
+86,LIFE,Movies,Lifetime airs women-centric movies and dramas.
+87,OWN,Lifestyle,Oprah Winfrey Network with inspirational and lifestyle content.
+88,BET,Entertainment,Black Entertainment Television offers music, series, and movies.
+89,OVATION,Entertainment,Arts and culture programming with films and performances.
+90,CNN,News,24/7 news covering global events and politics.
+91,FNC,News,Fox News Channel provides conservative news and commentary.
+92,MSNBC,News,News and analysis with a progressive perspective.
+93,HLN,News,Headline News offers crime stories and news updates.
+94,CNBC,News,Business and financial news and talk shows.
+95,FBN,News,Fox Business Network covers markets and economic news.
+96,BLOOM,News,Bloomberg Television focuses on global finance and business.
+97,WEATH,News,Weather Channel provides forecasts and weather news.
+98,CSPAN,News,Public affairs and government proceedings coverage.
+99,DISN,Kids,Disney Channel offers family-friendly shows and movies.
+100,BOOM,Kids,Boomerang airs classic and new animated series.
+102,UKIDS,Kids,Universal Kids provides educational and fun kids' programming.
+103,NICKJR,Kids,Nick Jr. offers preschool-friendly shows and learning content.
+104,NICK,Kids,Nickelodeon features animated and live-action kids' shows.
+105,TOON,Kids,Cartoon Network airs animated series and movies.
+106,DFC,Kids,Disney Junior provides programming for young children.
+107,CMT,Music,Country Music Television with music videos and shows.
+108,GACF,Lifestyle,Great American Country focuses on country lifestyle and music.
+109,ESPN,Sports,Leading sports network with live events and analysis.
+110,ESPN2,Sports,Secondary ESPN channel with additional sports coverage.
+111,GUIDED2,Guide,Another interactive channel guide service.
+112,TNF,Sports,Thursday Night Football broadcasts NFL games.
+113,SEC,Sports,SEC Network covers Southeastern Conference sports.
+114,FS1,Sports,Fox Sports 1 offers live sports and commentary.
+115,FS2,Sports,Fox Sports 2 provides extended sports coverage.
+116,MT,Music,MTV with music videos and reality programming.
+117,TCM,Movies,Turner Classic Movies airs classic films.
+118,HSN,Shopping,Home Shopping Network for retail and product showcases.
+119,EWTN,Religious,Global Catholic network with religious programming.
+120,SHOPHQ,Shopping,Shopping channel with jewelry, electronics, and more.
+121,QVC,Shopping,Retail channel offering a variety of products.
+122,CNNE,International,Spanish-language CNN with global news.
+123,NEWSNTN,News,NewsNation provides balanced news coverage.
+124,MTV2,Music,MTV2 focuses on music videos and alternative content.
+125,MTVCLAS,Music,MTV Classic airs retro music videos and shows.
+126,UP,Religious,Uplifting family-friendly movies and series.
+128,RFDHD,Lifestyle,Rural-focused programming on farming and country life.
+129,VICE,Entertainment,Documentaries and series on culture and lifestyle.
+130,FYI,Lifestyle,Reality and lifestyle shows on diverse topics.
+131,DEST,Lifestyle,Destination America explores American culture and travel.
+132,ID,Educational,Investigation Discovery focuses on true crime stories.
+133,ACUWTHR,News,AccuWeather provides detailed weather forecasts.
+134,COOK,Lifestyle,Cooking Channel offers recipes and culinary shows.
+135,OXYGEN,Entertainment,True crime and women-focused reality shows.
+136,WE,Entertainment,WE tv offers reality shows and dramas.
+137,POP,Entertainment,Pop culture-focused shows and light entertainment.
+138,GSN,Entertainment,Game Show Network with classic and new game shows.
+139,LOGO,Entertainment,LGBTQ+-focused programming and movies.
+140,DLC,Educational,Discovery Life covers health and real-life stories.
+141,BHER,Entertainment,BET Her offers content for Black women.
+142,TVONE,Entertainment,Programming focused on African American culture.
+143,BBCWLD,News,BBC World News delivers global news coverage.
+144,NIKTON,Kids,Nicktoons airs animated Nickelodeon series.
+145,TNCK,Kids,TeenNick targets teens with shows and movies.
+147,MTVLIVE,Music,MTV Live broadcasts live music performances.
+148,RVLT,Entertainment,Revolt focuses on hip-hop culture and music.
+149,FUSE,Music,Music videos and pop culture programming.
+150,INSP,Religious,Inspirational programming with family values.
+151,SUNDANC,Movies,SundanceTV airs independent films and series.
+154,LMN,Movies,Lifetime Movie Network with drama and thriller films.
+155,IFC,Movies,Independent Film Channel showcases indie films.
+156,HMM,Movies,Hallmark Movies & Mysteries with mystery films.
+157,BETSOUL,Music,Soul and R&B music videos and programming.
+159,BYUTV,Religious,Family-friendly content from Brigham Young University.
+161,IMPCNET,Movies,Impact Network offers faith-based and family content.
+162,MAGN,Lifestyle,Magnolia Network focuses on home and lifestyle shows.
+163,MTVU,Music,MTV University targets college audiences with music.
+164,NEWSMX,International,Newsmax provides conservative news and talk shows.
+165,BIGTEN,Sports,Big Ten Network covers college sports events.
+166,ACC,Sports,ACC Network focuses on Atlantic Coast Conference sports.
+174,GUIDESP,Guide,Spanish-language interactive channel guide.
+175,BEIN,Sports,beIN Sports covers international soccer and sports.
+177,CBSSN,Sports,CBS Sports Network with college sports and analysis.
+187,ESPND,International,Spanish-language ESPN with sports coverage.
+189,ESPNEWS,Sports,ESPN News provides sports updates and highlights.
+190,ESPNU,Sports,ESPN U focuses on college sports and events.
+191,FXDEP,Sports,Fox Deportes offers Spanish-language sports.
+196,GOLF,Sports,Golf Channel covers professional golf tournaments.
+197,MLBN,Sports,MLB Network with baseball games and analysis.
+198,MLBNSZ,Sports,MLB Network Strike Zone for live baseball highlights.
+199,NBATV,Sports,NBA TV covers basketball games and news.
+200,NFLNET,Sports,NFL Network with football games and analysis.
+201,NFLNRZ,Sports,NFL RedZone provides live NFL game coverage.
+202,NHLNET,Sports,NHL Network covers hockey games and news.
+203,COWBOY,Lifestyle,Cowboy Channel focuses on rodeo and western lifestyle.
+204,OUTD,Sports,Outdoor Channel covers hunting and fishing.
+211,SEC2,Sports,Secondary SEC channel for additional sports coverage.
+212,TENNIS,Sports,Tennis Channel covers professional tennis events.
+213,TVG,Sports,TVG focuses on horse racing and betting.
+214,TUDN,International,Spanish-language sports network with soccer focus.
+215,WILLOW,Sports,Willow TV covers international cricket matches.
