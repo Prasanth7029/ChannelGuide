@@ -10,271 +10,273 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #0056b3;
-            --primary-light: #4d8fd6;
-            --secondary: #ff7e33;
-            --accent: #00c3ff;
-            --dark: #1a2b50;
-            --light: #f8f9fa;
-            --white: #ffffff;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
+           --primary: #0056b3;
+           --primary-light: #4d8fd6;
+           --secondary: #ff7e33;
+           --accent: #00c3ff;
+           --dark: #1a2b50;
+           --light: #f8f9fa;
+           --white: #ffffff;
+           --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+           --transition: all 0.3s ease;
+       }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+       * {
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box;
+       }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+       body {
+           font-family: 'Poppins', sans-serif;
+           background-color: var(--light);
+           color: var(--dark);
+           line-height: 1.5;
+           overflow-x: hidden;
+       }
 
-        /* Header styles */
-        header {
-            text-align: center;
-            padding: 2rem 1rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
+       /* Header styles */
+       header {
+           text-align: center;
+           padding: 1rem 0.5rem;
+           background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+           color: white;
+           position: relative;
+           overflow: hidden;
+           box-shadow: var(--shadow);
+       }
 
-        .hotel-logo {
-            width: 120px;
-            height: auto;
-            margin-bottom: 1rem;
-            filter: drop-shadow(var(--shadow));
-        }
+       .hotel-logo {
+           width: 100px;
+           height: auto;
+           margin-bottom: 0.5rem;
+           filter: drop-shadow(var(--shadow));
+       }
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            color: var(--white);
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
+       h1 {
+           font-family: 'Playfair Display', serif;
+           color: var(--white);
+           font-size: 2.5rem;
+           margin-bottom: 0.5rem;
+       }
 
-        .manager {
-            font-weight: 600;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
+       .manager {
+           font-weight: 600;
+           font-size: 1.1rem;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           gap: 0.5rem;
+       }
 
-        /* Main content */
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-        }
+       /* Main content */
+       .container {
+           max-width: 1200px;
+           margin: 2rem auto;
+           padding: 0 1.5rem;
+       }
 
-        .guide-container {
-            background: var(--white);
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            margin-bottom: 2rem;
-        }
+       .guide-container {
+           background: var(--white);
+           border-radius: 16px;
+           box-shadow: var(--shadow);
+           overflow: hidden;
+           margin-bottom: 2rem;
+       }
 
-        .guide-header {
-            background: var(--primary);
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
+       .guide-header {
+           background: var(--primary);
+           color: white;
+           padding: 1rem;
+           text-align: center;
+           font-size: 1.5rem;
+           font-weight: 600;
+       }
 
-        /* Channel Guide Table Styles */
-        .channel-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 1rem;
-        }
+       /* Channel Guide Table Styles */
+       .channel-table {
+           width: 100%;
+           border-collapse: collapse;
+           font-size: 1rem;
+       }
 
-        .channel-table th {
-            background-color: var(--primary-light);
-            color: white;
-            padding: 12px 8px;
-            text-align: left;
-            position: sticky;
-            top: 0;
-        }
+       .channel-table th {
+           background-color: var(--primary-light);
+           color: white;
+           padding: 12px 8px;
+           text-align: left;
+           position: sticky;
+           top: 0;
+       }
 
-        .channel-table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
+       .channel-table tr:nth-child(even) {
+           background-color: #f2f2f2;
+       }
 
-        .channel-table tr:hover {
-            background-color: #e6f0ff;
-        }
+       .channel-table tr:hover {
+           background-color: #e6f0ff;
+       }
 
-        .channel-table td {
-            padding: 10px 8px;
-            border-bottom: 1px solid #ddd;
-        }
+       .channel-table td {
+           padding: 10px 8px;
+           border-bottom: 1px solid #ddd;
+       }
 
-        .channel-number {
-            font-weight: bold;
-            color: var(--primary);
-            width: 80px;
-        }
+       .channel-number {
+           font-weight: bold;
+           color: var(--primary);
+           width: 80px;
+           text-align: center;
+       }
 
-        .channel-name {
-            font-weight: 600;
-        }
+       .channel-name {
+           font-weight: 600;
+       }
 
-        .channel-category {
-            color: #666;
-            font-size: 0.8rem;
-        }
+       .channel-category {
+           color: #666;
+           font-size: 0.8rem;
+       }
 
-        /* Search and Filter */
-        .search-filter {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
+       /* Search and Filter */
+       .search-filter {
+           display: flex;
+           justify-content: space-between;
+           margin-bottom: 1.5rem;
+           flex-wrap: wrap;
+           gap: 1rem;
+       }
 
-        .search-box {
-            flex: 1;
-            min-width: 250px;
-            position: relative;
-        }
+       .search-box {
+           flex: 1;
+           min-width: 250px;
+           position: relative;
+       }
 
-        .search-box input {
-            width: 100%;
-            padding: 10px 15px 10px 40px;
-            border: 1px solid #ddd;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
+       .search-box input {
+           width: 100%;
+           padding: 10px 15px 10px 40px;
+           border: 1px solid #ddd;
+           border-radius: 30px;
+           font-size: 0.9rem;
+           transition: var(--transition);
+       }
 
-        .search-box input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
-        }
+       .search-box input:focus {
+           outline: none;
+           border-color: var(--primary);
+           box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
+       }
 
-        .search-box i {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #777;
-        }
+       .search-box i {
+           position: absolute;
+           left: 15px;
+           top: 50%;
+           transform: translateY(-50%);
+           color: #777;
+       }
 
-        .category-filter {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
+       .category-filter {
+           display: flex;
+           gap: 0.5rem;
+           flex-wrap: wrap;
+       }
 
-        .category-btn {
-            padding: 8px 15px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
+       .category-btn {
+           padding: 8px 15px;
+           background: white;
+           border: 1px solid #ddd;
+           border-radius: 30px;
+           font-size: 0.8rem;
+           cursor: pointer;
+           transition: var(--transition);
+       }
 
-        .category-btn:hover, .category-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
+       .category-btn:hover, .category-btn.active {
+           background: var(--primary);
+           color: white;
+           border-color: var(--primary);
+       }
 
-        /* Table container with scroll */
-        .table-container {
-            max-height: 600px;
-            overflow-y: auto;
-            position: relative;
-        }
+       /* Table container with scroll */
+       .table-container {
+           max-height: 600px;
+           overflow-y: auto;
+           position: relative;
+       }
 
-        /* Loading state */
-        .loading {
-            text-align: center;
-            padding: 2rem;
-            font-style: italic;
-            color: #666;
-        }
+       /* Loading state */
+       .loading {
+           text-align: center;
+           padding: 2rem;
+           font-style: italic;
+           color: #666;
+       }
 
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: var(--white);
-            padding: 2rem 1rem;
-            text-align: center;
-            margin-top: 3rem;
-        }
+       /* Footer */
+       footer {
+           background: var(--dark);
+           color: var(--white);
+           padding: 1rem 0.5rem;
+           text-align: center;
+           margin-top: 2rem;
+       }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+       .footer-content {
+           max-width: 1200px;
+           margin: 0 auto;
+       }
 
-        .footer-logo {
-            width: 100px;
-            height: auto;
-            margin-bottom: 1rem;
-            opacity: 0.8;
-        }
+       .footer-logo {
+           width: 100px;
+           height: auto;
+           margin-bottom: 1rem;
+           opacity: 0.8;
+       }
 
-        .address {
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
+       .address {
+           margin-bottom: 1rem;
+           font-size: 0.9rem;
+           opacity: 0.8;
+       }
 
-        .copyright {
-            font-size: 0.8rem;
-            opacity: 0.6;
-        }
+       .copyright {
+           font-size: 0.8rem;
+           opacity: 0.6;
+       }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
+       .social-links {
+           display: flex;
+           justify-content: center;
+           gap: 1.5rem;
+           margin: 1.5rem 0;
+       }
 
-        .social-link {
-            color: var(--white);
-            font-size: 1.5rem;
-            transition: var(--transition);
-        }
+       .social-link {
+           color: var(--white);
+           font-size: 1.5rem;
+           transition: var(--transition);
+       }
 
-        .social-link:hover {
-            color: var(--accent);
-            transform: translateY(-3px);
-        }
+       .social-link:hover {
+           color: var(--accent);
+           transform: translateY(-3px);
+       }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
+       /* Responsive adjustments */
+       @media (max-width: 768px) {
+           h1 {
+               font-size: 2rem;
+           }
 
-            .channel-table {
-                font-size: 0.8rem;
-            }
+           .channel-table {
+               font-size: 0.8rem;
+           }
 
-            .channel-table td, .channel-table th {
-                padding: 8px 5px;
-            }
-        }
+           .channel-table td, .channel-table th {
+               padding: 8px 5px;
+           }
+       }
     </style>
 </head>
 <body>
@@ -290,7 +292,7 @@
     <div class="search-filter">
         <div class="search-box">
             <i class="fas fa-search"></i>
-            <input type="text" id="searchInput" placeholder="Search channels..." onkeyup="searchChannels()">
+            <label for="searchInput"></label><input type="text" id="searchInput" placeholder="Search channels..." onkeyup="searchChannels()">
         </div>
         <div class="category-filter" id="categoryFilter">
             <!-- Categories will be dynamically generated -->
