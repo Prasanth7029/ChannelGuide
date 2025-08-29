@@ -1,322 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comfort Suites TV Channel Guide</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-           --primary: #0056b3;
-           --primary-light: #4d8fd6;
-           --secondary: #ff7e33;
-           --accent: #00c3ff;
-           --dark: #1a2b50;
-           --light: #f8f9fa;
-           --white: #ffffff;
-           --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-           --transition: all 0.3s ease;
-       }
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+  <meta name="theme-color" content="#0056b3" />
+  <title>Comfort Suites TV Channel Guide</title>
 
-       * {
-           margin: 0;
-           padding: 0;
-           box-sizing: border-box;
-       }
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
 
-       body {
-           font-family: 'Poppins', sans-serif;
-           background-color: var(--light);
-           color: var(--dark);
-           line-height: 1.5;
-           overflow-x: hidden;
-       }
+  <style>
+    :root{
+      --primary:#0056b3;
+      --primary-light:#4d8fd6;
+      --secondary:#ff7e33;
+      --accent:#00c3ff;
+      --dark:#1a2b50;
+      --light:#f8f9fa;
+      --white:#ffffff;
+      --muted:#6b7280;
+      --shadow:0 8px 24px rgba(0,0,0,.12);
+      --ring:0 0 0 3px rgba(0,86,179,.25);
+      --radius:16px;
+      --transition:all .25s ease;
+    }
 
-       /* Header styles */
-       header {
-           text-align: center;
-           padding: 1rem 0.5rem;
-           background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-           color: white;
-           position: relative;
-           overflow: hidden;
-           box-shadow: var(--shadow);
-       }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{-webkit-text-size-adjust:100%}
+    body{
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:var(--light);
+      color:var(--dark);
+      line-height:1.55;
+      overflow-x:hidden;
+      -webkit-tap-highlight-color:transparent;
+    }
 
-       .hotel-logo {
-           width: 100px;
-           height: auto;
-           margin-bottom: 0.5rem;
-           filter: drop-shadow(var(--shadow));
-       }
+    /* Header */
+    header{
+      text-align:center;
+      padding:1rem .75rem;
+      background:linear-gradient(135deg,var(--primary),var(--primary-light));
+      color:var(--white);
+      position:sticky;
+      top:0;
+      z-index:20;
+      box-shadow:var(--shadow);
+    }
+    .hotel-logo{
+      width:min(24vw,110px);
+      height:auto;
+      margin:.25rem auto .5rem;
+      display:block;
+      filter:drop-shadow(0 4px 10px rgba(0,0,0,.25));
+    }
+    h1{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.5rem,2.5vw,2.4rem);
+      letter-spacing:.2px;
+      margin:.15rem 0 .35rem;
+    }
+    header p.sub{
+      opacity:.95;
+      font-weight:600;
+      letter-spacing:.3px;
+    }
 
-       h1 {
-           font-family: 'Playfair Display', serif;
-           color: var(--white);
-           font-size: 2.5rem;
-           margin-bottom: 0.5rem;
-       }
+    /* Layout */
+    .container{
+      max-width:1200px;
+      margin:1.25rem auto 2rem;
+      padding:0 1rem;
+    }
 
-       .manager {
-           font-weight: 600;
-           font-size: 1.1rem;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           gap: 0.5rem;
-       }
+    /* Search + Filters bar */
+    .search-filter{
+      position:sticky;
+      top:calc(env(safe-area-inset-top) + 72px);
+      z-index:15;
+      background:linear-gradient(180deg,#fff,rgba(255,255,255,.92));
+      backdrop-filter:saturate(1.3) blur(6px);
+      border-radius:14px;
+      box-shadow:var(--shadow);
+      padding:.85rem;
+      display:grid;
+      gap:.85rem;
+      grid-template-columns:1fr;
+    }
+    .row{
+      display:flex;gap:.75rem;flex-wrap:wrap;align-items:center
+    }
+    .search-box{
+      position:relative;flex:1;min-width:240px
+    }
+    .search-box input{
+      width:100%;
+      padding:.8rem 2.75rem .8rem 2.4rem;
+      border:1px solid #e5e7eb;
+      border-radius:999px;
+      font-size:16px; /* iOS: prevent zoom */
+      background:#fff;
+      outline:0;
+      transition:var(--transition);
+      box-shadow:0 1px 0 rgba(0,0,0,.02);
+    }
+    .search-box input:focus{border-color:var(--primary); box-shadow:var(--ring)}
+    .search-box .ico{
+      position:absolute; left:.9rem; top:50%; transform:translateY(-50%); color:#8a8f98
+    }
+    .search-box .clear-btn{
+      position:absolute; right:.6rem; top:50%; transform:translateY(-50%);
+      border:0;background:transparent; cursor:pointer; padding:.25rem .35rem; border-radius:8px
+    }
+    .search-box .clear-btn:focus-visible{outline:0; box-shadow:var(--ring)}
+    .meta{
+      display:flex; gap:.75rem; align-items:center; flex-wrap:wrap
+    }
+    .pill{
+      font-size:.85rem; color:#0f172a; background:#eef2ff; border:1px solid #dbeafe;
+      padding:.4rem .7rem; border-radius:999px
+    }
+    .reset-btn{
+      border:1px solid #e5e7eb; background:#fff; color:#111827;
+      padding:.55rem .9rem; border-radius:10px; cursor:pointer; transition:var(--transition)
+    }
+    .reset-btn:hover{background:#f9fafb}
+    .reset-btn:focus-visible{outline:0; box-shadow:var(--ring)}
 
-       /* Main content */
-       .container {
-           max-width: 1200px;
-           margin: 2rem auto;
-           padding: 0 1.5rem;
-       }
+    /* Category chips */
+    .category-filter{
+      display:flex; gap:.5rem; overflow-x:auto; padding:.25rem .15rem .15rem;
+      scroll-snap-type:x proximity; overscroll-behavior-x:contain; -webkit-overflow-scrolling:touch
+    }
+    .category-btn{
+      scroll-snap-align:start;
+      white-space:nowrap; cursor:pointer; user-select:none;
+      padding:.55rem .9rem; border-radius:999px;
+      background:#fff; border:1px solid #e5e7eb; font-size:.9rem;
+      transition:var(--transition)
+    }
+    .category-btn:hover{border-color:var(--primary); color:var(--primary)}
+    .category-btn.active{background:var(--primary); color:#fff; border-color:var(--primary)}
+    .category-btn:focus-visible{outline:0; box-shadow:var(--ring)}
 
-       .guide-container {
-           background: var(--white);
-           border-radius: 16px;
-           box-shadow: var(--shadow);
-           overflow: hidden;
-           margin-bottom: 2rem;
-       }
+    /* Guide card */
+    .guide-container{
+      background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden
+    }
+    .guide-header{
+      background:var(--primary); color:#fff; padding:.9rem 1rem; font-weight:700;
+      display:flex; align-items:center; gap:.6rem; justify-content:center;
+      letter-spacing:.3px
+    }
+    .table-container{
+      max-height:600px; overflow:auto; position:relative; -webkit-overflow-scrolling:touch
+    }
 
-       .guide-header {
-           background: var(--primary);
-           color: white;
-           padding: 1rem;
-           text-align: center;
-           font-size: 1.5rem;
-           font-weight: 600;
-       }
+    /* Table (desktop & tablets) */
+    table{width:100%; border-collapse:collapse; font-size:1rem}
+    thead th{
+      position:sticky; top:0; z-index:5;
+      background:linear-gradient(180deg,var(--primary-light),#6fa6df);
+      color:#fff; text-align:left; padding:12px 10px; font-weight:700; letter-spacing:.2px
+    }
+    tbody tr:nth-child(even){background:#f8fbff}
+    tbody tr:hover{background:#eef4ff}
+    td{
+      padding:12px 10px; border-bottom:1px solid #e5e7eb; vertical-align:top
+    }
+    .channel-number{font-weight:800; color:var(--primary); text-align:center; width:88px}
+    .channel-name{font-weight:700}
+    .channel-category{color:var(--muted); font-size:.88rem}
 
-       /* Channel Guide Table Styles */
-       .channel-table {
-           width: 100%;
-           border-collapse: collapse;
-           font-size: 1rem;
-       }
+    .loading{
+      text-align:center; padding:2rem; font-style:italic; color:#6b7280
+    }
 
-       .channel-table th {
-           background-color: var(--primary-light);
-           color: white;
-           padding: 12px 8px;
-           text-align: left;
-           position: sticky;
-           top: 0;
-       }
+    /* Mobile-first card view */
+    @media (max-width: 640px){
+      .container{margin:1rem auto 1.5rem}
+      .guide-container{border-radius:14px}
+      thead{display:none}
+      .table-container{max-height:none}
+      table, tbody, tr, td{display:block; width:100%}
+      tbody tr{
+        background:#fff; border:1px solid #e5e7eb; border-radius:14px;
+        padding:.5rem .6rem; margin:.6rem auto; box-shadow:0 4px 12px rgba(0,0,0,.05)
+      }
+      td{
+        display:flex; align-items:flex-start; justify-content:space-between; gap:.75rem;
+        padding:.55rem .25rem; border:0
+      }
+      td::before{
+        content:attr(data-label);
+        font-weight:700; color:#1f2937; flex:0 0 38%;
+      }
+      .channel-number{font-size:1.05rem}
+      .channel-name{font-size:1rem}
+      .channel-category{font-size:.9rem}
+    }
 
-       .channel-table tr:nth-child(even) {
-           background-color: #f2f2f2;
-       }
+    /* Footer */
+    footer{
+      background:var(--dark); color:#fff; padding:1.2rem .75rem; text-align:center; margin-top:1.25rem
+    }
+    .footer-content{max-width:1200px; margin:0 auto}
+    .footer-logo{width:100px; height:auto; margin:.25rem auto .75rem; opacity:.9}
+    .address{margin-bottom:.6rem; font-size:.95rem; opacity:.9}
+    .address p{margin:.15rem 0}
+    .copyright{font-size:.85rem; opacity:.7}
 
-       .channel-table tr:hover {
-           background-color: #e6f0ff;
-       }
-
-       .channel-table td {
-           padding: 10px 8px;
-           border-bottom: 1px solid #ddd;
-       }
-
-       .channel-number {
-           font-weight: bold;
-           color: var(--primary);
-           width: 80px;
-           text-align: center;
-       }
-
-       .channel-name {
-           font-weight: 600;
-       }
-
-       .channel-category {
-           color: #666;
-           font-size: 0.8rem;
-       }
-
-       /* Search and Filter */
-       .search-filter {
-           display: flex;
-           justify-content: space-between;
-           margin-bottom: 1.5rem;
-           flex-wrap: wrap;
-           gap: 1rem;
-       }
-
-       .search-box {
-           flex: 1;
-           min-width: 250px;
-           position: relative;
-       }
-
-       .search-box input {
-           width: 100%;
-           padding: 10px 15px 10px 40px;
-           border: 1px solid #ddd;
-           border-radius: 30px;
-           font-size: 0.9rem;
-           transition: var(--transition);
-       }
-
-       .search-box input:focus {
-           outline: none;
-           border-color: var(--primary);
-           box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
-       }
-
-       .search-box i {
-           position: absolute;
-           left: 15px;
-           top: 50%;
-           transform: translateY(-50%);
-           color: #777;
-       }
-
-       .category-filter {
-           display: flex;
-           gap: 0.5rem;
-           flex-wrap: wrap;
-       }
-
-       .category-btn {
-           padding: 8px 15px;
-           background: white;
-           border: 1px solid #ddd;
-           border-radius: 30px;
-           font-size: 0.8rem;
-           cursor: pointer;
-           transition: var(--transition);
-       }
-
-       .category-btn:hover, .category-btn.active {
-           background: var(--primary);
-           color: white;
-           border-color: var(--primary);
-       }
-
-       /* Table container with scroll */
-       .table-container {
-           max-height: 600px;
-           overflow-y: auto;
-           position: relative;
-       }
-
-       /* Loading state */
-       .loading {
-           text-align: center;
-           padding: 2rem;
-           font-style: italic;
-           color: #666;
-       }
-
-       /* Footer */
-       footer {
-           background: var(--dark);
-           color: var(--white);
-           padding: 1rem 0.5rem;
-           text-align: center;
-           margin-top: 2rem;
-       }
-
-       .footer-content {
-           max-width: 1200px;
-           margin: 0 auto;
-       }
-
-       .footer-logo {
-           width: 100px;
-           height: auto;
-           margin-bottom: 1rem;
-           opacity: 0.8;
-       }
-
-       .address {
-           margin-bottom: 1rem;
-           font-size: 0.9rem;
-           opacity: 0.8;
-       }
-
-       .copyright {
-           font-size: 0.8rem;
-           opacity: 0.6;
-       }
-
-       /* Responsive adjustments */
-       @media (max-width: 768px) {
-           h1 {
-               font-size: 2rem;
-           }
-
-           .channel-table {
-               font-size: 0.8rem;
-           }
-
-           .channel-table td, .channel-table th {
-               padding: 8px 5px;
-           }
-       }
-    </style>
+    /* Prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none!important; transition:none!important; scroll-behavior:auto!important}
+    }
+  </style>
 </head>
 <body>
-<header>
-    <img src="logo.png" alt="Comfort  Suites Logo" class="hotel-logo">
-    <p>TV Channel Guide</p>
+  <header role="banner">
+    <img src="logo.png" alt="Comfort Suites Logo" class="hotel-logo" loading="lazy" />
+    <h1>Comfort Suites – TV Channel Guide</h1>
+    <p class="sub">Find your channel fast, on any device.</p>
+  </header>
 
-</header>
-
-<main class="container">
-    <div class="search-filter">
+  <main class="container" role="main">
+    <section class="search-filter" aria-label="Search and filter">
+      <div class="row">
         <div class="search-box">
-            <i class="fas fa-search"></i>
-            <label for="searchInput"></label><input type="text" id="searchInput" placeholder="Search channels..." onkeyup="searchChannels()">
+          <i class="fas fa-search ico" aria-hidden="true"></i>
+          <label for="searchInput" class="sr-only">Search channels</label>
+          <input id="searchInput" type="search" placeholder="Search channels, names, categories…" inputmode="search" autocomplete="off" aria-describedby="resultCount" />
+          <button class="clear-btn" id="clearBtn" title="Clear search" aria-label="Clear search" style="display:none">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
         </div>
-        <div class="category-filter" id="categoryFilter">
-            <!-- Categories will be dynamically generated -->
-        </div>
-    </div>
 
-    <div class="guide-container">
-        <div class="guide-header">
-            <i class="fas fa-tv"></i> Comfort Suites Channel Lineup
+        <div class="meta">
+          <span class="pill" id="resultCount">Loading…</span>
+          <button class="reset-btn" id="resetBtn" type="button">
+            Reset Filters
+          </button>
         </div>
-        <div class="table-container">
-            <table class="channel-table" id="channelTable">
-                <thead>
-                <tr>
-                    <th>Channel</th>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Description</th>
-                </tr>
-                </thead>
-                <tbody id="channelTableBody">
-                <tr>
-                    <td colspan="4" class="loading">Loading channel guide...</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</main>
+      </div>
 
-<footer>
+      <div class="category-filter" id="categoryFilter" role="tablist" aria-label="Filter by category">
+        <!-- Chips injected -->
+      </div>
+    </section>
+
+    <section class="guide-container" aria-label="Channel lineup">
+      <div class="guide-header">
+        <i class="fas fa-tv" aria-hidden="true"></i>
+        <span>Comfort Suites Channel Lineup</span>
+      </div>
+
+      <div class="table-container" role="region" aria-live="polite" aria-label="Channel results">
+        <table class="channel-table" id="channelTable">
+          <thead>
+            <tr>
+              <th scope="col">Channel</th>
+              <th scope="col">Name</th>
+              <th scope="col">Category</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody id="channelTableBody">
+            <tr>
+              <td colspan="4" class="loading">Loading channel guide...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
     <div class="footer-content">
-        <img src="logo.png" alt="Comfort Suites Logo" class="footer-logo">
-        <div class="address">
-            <p><i class="fas fa-map-marker-alt"></i> 121 Raydo Circle, Springfield, OH, 45506, US</p>
-            <p><i class="fas fa-phone"></i> (937) 322-0707</p>
-        </div>
-
-        <p class="copyright">© 2025 Comfort Suites Springfield, Ohio. All rights reserved.</p>
+      <img src="logo.png" alt="Comfort Suites Logo" class="footer-logo" loading="lazy" />
+      <div class="address">
+        <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> 121 Raydo Circle, Springfield, OH, 45506, US</p>
+        <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:+19373220707" style="color:#fff; text-decoration:underline"> (937) 322-0707</a></p>
+      </div>
+      <p class="copyright">© 2025 Comfort Suites Springfield, Ohio. All rights reserved.</p>
     </div>
-</footer>
+  </footer>
 
-<script>
-    // CSV data (this would normally be fetched from a file)
+  <script>
+    // --- CSV DATA (unchanged: names & codes preserved) ---
     const csvData = `channel,name,category,description
 3,GUIDELO,Guide,Interactive channel guide for navigating TV services.
 6,ABC,Entertainment,National network offering dramas, comedies, news, and reality shows.
@@ -463,155 +445,158 @@
 214,TUDN,International,Spanish-language sports network with soccer focus.
 215,WILLOW,Sports,Willow TV covers international cricket matches.`;
 
-    // Parse CSV data
-    function parseCSV(csv) {
-        const lines = csv.split('\n');
-        const headers = lines[0].split(',');
-        const result = [];
+    // --- Utilities ---
+    const $ = sel => document.querySelector(sel);
+    const $$ = sel => Array.from(document.querySelectorAll(sel));
 
-        for (let i = 1; i < lines.length; i++) {
-            if (!lines[i]) continue;
-
-            const obj = {};
-            const currentline = lines[i].split(',');
-
-            for (let j = 0; j < headers.length; j++) {
-                obj[headers[j]] = currentline[j];
-            }
-
-            result.push(obj);
+    function parseCSV(csv){
+      const lines = csv.trim().split('\n');
+      const headers = lines[0].split(',');
+      const out = [];
+      for(let i=1;i<lines.length;i++){
+        if(!lines[i]) continue;
+        const cols = lines[i].split(',');
+        const obj = {};
+        for(let j=0;j<headers.length;j++){
+          obj[headers[j]] = (cols[j] ?? '').trim();
         }
-
-        return result;
+        out.push(obj);
+      }
+      return out;
     }
 
-    // Display channels in table
-    function displayChannels(channels) {
-        const tableBody = document.getElementById('channelTableBody');
-        tableBody.innerHTML = '';
+    // --- State ---
+    let channelsData = [];
+    let activeCategory = 'all';
+    let debounceId = null;
 
-        if (channels.length === 0) {
-            tableBody.innerHTML = '<tr><td colspan="4">No channels found matching your criteria</td></tr>';
-            return;
+    // --- Rendering ---
+    function displayChannels(list){
+      const body = $('#channelTableBody');
+      body.innerHTML = '';
+      if(!list.length){
+        body.innerHTML = '<tr><td colspan="4" class="loading">No channels found matching your criteria.</td></tr>';
+        $('#resultCount').textContent = '0 results';
+        return;
+      }
+      list.forEach(ch => {
+        const tr = document.createElement('tr');
+        tr.setAttribute('data-category', (ch.category||'').toLowerCase());
+
+        const td1 = document.createElement('td');
+        td1.className = 'channel-number';
+        td1.setAttribute('data-label','Channel');
+        td1.textContent = ch.channel;
+
+        const td2 = document.createElement('td');
+        td2.className = 'channel-name';
+        td2.setAttribute('data-label','Name');
+        td2.textContent = ch.name;
+
+        const td3 = document.createElement('td');
+        td3.className = 'channel-category';
+        td3.setAttribute('data-label','Category');
+        td3.textContent = ch.category;
+
+        const td4 = document.createElement('td');
+        td4.setAttribute('data-label','Description');
+        td4.textContent = ch.description;
+
+        tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3); tr.appendChild(td4);
+        body.appendChild(tr);
+      });
+      $('#resultCount').textContent = `${list.length} result${list.length===1?'':'s'}`;
+    }
+
+    function buildCategoryChips(list){
+      const cats = Array.from(new Set(list.map(c => c.category))).sort((a,b)=>a.localeCompare(b));
+      const wrap = $('#categoryFilter');
+      wrap.innerHTML = '';
+
+      // All chip
+      const allBtn = document.createElement('button');
+      allBtn.className = 'category-btn active';
+      allBtn.type = 'button';
+      allBtn.setAttribute('role','tab');
+      allBtn.setAttribute('aria-selected','true');
+      allBtn.textContent = 'All';
+      allBtn.addEventListener('click', () => selectCategory('all', allBtn));
+      wrap.appendChild(allBtn);
+
+      cats.forEach(cat=>{
+        const btn = document.createElement('button');
+        btn.className = 'category-btn';
+        btn.type = 'button';
+        btn.setAttribute('role','tab');
+        btn.setAttribute('aria-selected','false');
+        btn.textContent = cat;
+        btn.addEventListener('click', ()=> selectCategory(cat.toLowerCase(), btn));
+        wrap.appendChild(btn);
+      });
+    }
+
+    function selectCategory(cat, btn){
+      activeCategory = cat;
+      $$('.category-btn').forEach(b=>{
+        b.classList.toggle('active', b === btn);
+        b.setAttribute('aria-selected', b===btn ? 'true' : 'false');
+      });
+      applyFilters(); // re-filter with current search
+    }
+
+    function applyFilters(){
+      const term = ($('#searchInput').value || '').trim().toLowerCase();
+      const filtered = channelsData.filter(ch=>{
+        const inCat = (activeCategory === 'all') || (ch.category||'').toLowerCase() === activeCategory;
+        if(!inCat) return false;
+        if(!term) return true;
+        // match any field
+        return (ch.channel+' '+ch.name+' '+ch.category+' '+ch.description).toLowerCase().includes(term);
+      });
+      displayChannels(filtered);
+      $('#clearBtn').style.display = term ? 'block' : 'none';
+    }
+
+    // --- Init ---
+    document.addEventListener('DOMContentLoaded', ()=>{
+      channelsData = parseCSV(csvData);
+      displayChannels(channelsData);
+      buildCategoryChips(channelsData);
+      $('#resultCount').textContent = `${channelsData.length} results`;
+
+      // Search events (debounced)
+      const input = $('#searchInput');
+      input.addEventListener('input', ()=>{
+        clearTimeout(debounceId);
+        debounceId = setTimeout(applyFilters, 120);
+      });
+      input.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape'){
+          input.value=''; applyFilters(); input.blur();
         }
+      });
 
-        channels.forEach(channel => {
-            const row = document.createElement('tr');
-            row.setAttribute('data-category', channel.category.toLowerCase());
-
-            row.innerHTML = `
-                <td class="channel-number">${channel.channel}</td>
-                <td class="channel-name">${channel.name}</td>
-                <td class="channel-category">${channel.category}</td>
-                <td>${channel.description}</td>
-            `;
-
-            tableBody.appendChild(row);
+      // Clear & Reset
+      $('#clearBtn').addEventListener('click', ()=>{
+        $('#searchInput').value=''; applyFilters(); $('#searchInput').focus();
+      });
+      $('#resetBtn').addEventListener('click', ()=>{
+        $('#searchInput').value='';
+        activeCategory='all';
+        const chips = $$('.category-btn');
+        chips.forEach(b=>{
+          const isAll = b.textContent.trim().toLowerCase()==='all';
+          b.classList.toggle('active', isAll);
+          b.setAttribute('aria-selected', isAll ? 'true' : 'false');
         });
-    }
-
-    // Generate category filters
-    function generateCategoryFilters(channels) {
-        const categories = new Set();
-        const filterContainer = document.getElementById('categoryFilter');
-
-        // Extract all unique categories
-        channels.forEach(channel => {
-            categories.add(channel.category);
-        });
-
-        // Create "All" button
-        const allButton = document.createElement('button');
-        allButton.className = 'category-btn active';
-        allButton.textContent = 'All';
-        allButton.onclick = () => filterChannels('all');
-        filterContainer.appendChild(allButton);
-
-        // Create buttons for each category
-        categories.forEach(category => {
-            const button = document.createElement('button');
-            button.className = 'category-btn';
-            button.textContent = category;
-            button.onclick = () => filterChannels(category.toLowerCase());
-            filterContainer.appendChild(button);
-        });
-    }
-
-    // Search functionality
-    function searchChannels() {
-        const input = document.getElementById('searchInput');
-        const filter = input.value.toUpperCase();
-        const table = document.getElementById('channelTable');
-        const tr = table.getElementsByTagName('tr');
-
-        for (let i = 1; i < tr.length; i++) {
-            const tds = tr[i].getElementsByTagName('td');
-            let found = false;
-
-            for (let j = 0; j < tds.length; j++) {
-                const td = tds[j];
-                if (td) {
-                    const txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        found = true;
-                        break;
-                    }
-                }
-            }
-
-            tr[i].style.display = found ? '' : 'none';
-        }
-    }
-
-    // Filter by category
-    function filterChannels(category) {
-        const rows = document.querySelectorAll('#channelTable tbody tr');
-        const buttons = document.querySelectorAll('.category-btn');
-
-        // Update active button
-        buttons.forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.textContent.toLowerCase() === category ||
-               (btn.textContent === 'All' && category === 'all')) {
-                btn.classList.add('active');
-            }
-        });
-
-        // Filter rows
-        rows.forEach(row => {
-            if (category === 'all') {
-                row.style.display = '';
-            } else {
-                row.style.display = row.dataset.category === category.toLowerCase() ? '' : 'none';
-            }
-        });
-    }
-
-    // Initialize the page
-    document.addEventListener('DOMContentLoaded', function() {
-        // Parse the CSV data
-        const channels = parseCSV(csvData);
-
-        // Display channels and generate filters
-        displayChannels(channels);
-        generateCategoryFilters(channels);
-
-        // If you were loading from an actual CSV file, you would use:
-        /*
-        fetch('Comfort_Suites_TV_Channel_Guide_Structured.csv')
-            .then(response => response.text())
-            .then(csv => {
-                const channels = parseCSV(csv);
-                displayChannels(channels);
-                generateCategoryFilters(channels);
-            })
-            .catch(error => {
-                console.error('Error loading CSV:', error);
-                document.getElementById('channelTableBody').innerHTML =
-                    '<tr><td colspan="4">Error loading channel guide. Please try again later.</td></tr>';
-            });
-        */
+        applyFilters();
+      }, {passive:true});
     });
-</script>
+  </script>
+
+  <!-- Small helper for screen readers -->
+  <style>
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
 </body>
 </html>
