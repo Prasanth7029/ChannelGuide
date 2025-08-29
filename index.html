@@ -2,18 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  />
-  <meta name="theme-color" content="#0056b3" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#1a365d" />
   <title>Comfort Suites TV Channel Guide</title>
 
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
   />
   <link
@@ -22,266 +19,423 @@
   />
 
   <style>
-    :root{
-      --primary:#0056b3;
-      --primary-light:#4d8fd6;
-      --secondary:#ff7e33;
-      --accent:#00c3ff;
-      --dark:#1a2b50;
-      --light:#f8f9fa;
-      --white:#ffffff;
-      --muted:#6b7280;
-      --shadow:0 8px 24px rgba(0,0,0,.12);
-      --ring:0 0 0 3px rgba(0,86,179,.25);
-      --radius:16px;
-      --transition:all .25s ease;
+    :root {
+      --primary: #1a365d;
+      --primary-light: #2a4a7f;
+      --secondary: #f6ad55;
+      --accent: #4299e1;
+      --dark: #2d3748;
+      --light: #f7fafc;
+      --white: #ffffff;
+      --gray-100: #f7fafc;
+      --gray-200: #edf2f7;
+      --gray-300: #e2e8f0;
+      --gray-400: #cbd5e0;
+      --gray-500: #a0aec0;
+      --gray-600: #718096;
+      --gray-700: #4a5568;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --radius: 12px;
+      --transition: all 0.2s ease;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{-webkit-text-size-adjust:100%}
-    body{
-      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      background:var(--light);
-      color:var(--dark);
-      line-height:1.55;
-      overflow-x:hidden;
-      -webkit-tap-highlight-color:transparent;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--gray-100);
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
     }
 
     /* Header */
-    header{
-      text-align:center;
-      padding:1rem .75rem;
-      background:linear-gradient(135deg,var(--primary),var(--primary-light));
-      color:var(--white);
-      position:sticky;
-      top:0;
-      z-index:20;
-      box-shadow:var(--shadow);
-    }
-    .hotel-logo{
-      width:min(24vw,110px);
-      height:auto;
-      margin:.25rem auto .5rem;
-      display:block;
-      filter:drop-shadow(0 4px 10px rgba(0,0,0,.25));
-    }
-    h1{
-      font-family:'Playfair Display',serif;
-      font-size:clamp(1.5rem,2.5vw,2.4rem);
-      letter-spacing:.2px;
-      margin:.15rem 0 .35rem;
-    }
-    header p.sub{
-      opacity:.95;
-      font-weight:600;
-      letter-spacing:.3px;
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: var(--white);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: var(--shadow-lg);
     }
 
-    /* Layout */
-    .container{
-      max-width:1200px;
-      margin:1.25rem auto 2rem;
-      padding:0 1rem;
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
 
-    /* Search + Filters bar */
-    .search-filter{
-      position:sticky;
-      top:calc(env(safe-area-inset-top) + 72px);
-      z-index:15;
-      background:linear-gradient(180deg,#fff,rgba(255,255,255,.92));
-      backdrop-filter:saturate(1.3) blur(6px);
-      border-radius:14px;
-      box-shadow:var(--shadow);
-      padding:.85rem;
-      display:grid;
-      gap:.85rem;
-      grid-template-columns:1fr;
-    }
-    .row{
-      display:flex;gap:.75rem;flex-wrap:wrap;align-items:center
-    }
-    .search-box{
-      position:relative;flex:1;min-width:240px
-    }
-    .search-box input{
-      width:100%;
-      padding:.8rem 2.75rem .8rem 2.4rem;
-      border:1px solid #e5e7eb;
-      border-radius:999px;
-      font-size:16px; /* iOS: prevent zoom */
-      background:#fff;
-      outline:0;
-      transition:var(--transition);
-      box-shadow:0 1px 0 rgba(0,0,0,.02);
-    }
-    .search-box input:focus{border-color:var(--primary); box-shadow:var(--ring)}
-    .search-box .ico{
-      position:absolute; left:.9rem; top:50%; transform:translateY(-50%); color:#8a8f98
-    }
-    .search-box .clear-btn{
-      position:absolute; right:.6rem; top:50%; transform:translateY(-50%);
-      border:0;background:transparent; cursor:pointer; padding:.25rem .35rem; border-radius:8px
-    }
-    .search-box .clear-btn:focus-visible{outline:0; box-shadow:var(--ring)}
-    .meta{
-      display:flex; gap:.75rem; align-items:center; flex-wrap:wrap
-    }
-    .pill{
-      font-size:.85rem; color:#0f172a; background:#eef2ff; border:1px solid #dbeafe;
-      padding:.4rem .7rem; border-radius:999px
-    }
-    .reset-btn{
-      border:1px solid #e5e7eb; background:#fff; color:#111827;
-      padding:.55rem .9rem; border-radius:10px; cursor:pointer; transition:var(--transition)
-    }
-    .reset-btn:hover{background:#f9fafb}
-    .reset-btn:focus-visible{outline:0; box-shadow:var(--ring)}
-
-    /* Category chips */
-    .category-filter{
-      display:flex; gap:.5rem; overflow-x:auto; padding:.25rem .15rem .15rem;
-      scroll-snap-type:x proximity; overscroll-behavior-x:contain; -webkit-overflow-scrolling:touch
-    }
-    .category-btn{
-      scroll-snap-align:start;
-      white-space:nowrap; cursor:pointer; user-select:none;
-      padding:.55rem .9rem; border-radius:999px;
-      background:#fff; border:1px solid #e5e7eb; font-size:.9rem;
-      transition:var(--transition)
-    }
-    .category-btn:hover{border-color:var(--primary); color:var(--primary)}
-    .category-btn.active{background:var(--primary); color:#fff; border-color:var(--primary)}
-    .category-btn:focus-visible{outline:0; box-shadow:var(--ring)}
-
-    /* Guide card */
-    .guide-container{
-      background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden
-    }
-    .guide-header{
-      background:var(--primary); color:#fff; padding:.9rem 1rem; font-weight:700;
-      display:flex; align-items:center; gap:.6rem; justify-content:center;
-      letter-spacing:.3px
-    }
-    .table-container{
-      max-height:600px; overflow:auto; position:relative; -webkit-overflow-scrolling:touch
+    .hotel-logo {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 5px;
     }
 
-    /* Table (desktop & tablets) */
-    table{width:100%; border-collapse:collapse; font-size:1rem}
-    thead th{
-      position:sticky; top:0; z-index:5;
-      background:linear-gradient(180deg,var(--primary-light),#6fa6df);
-      color:#fff; text-align:left; padding:12px 10px; font-weight:700; letter-spacing:.2px
-    }
-    tbody tr:nth-child(even){background:#f8fbff}
-    tbody tr:hover{background:#eef4ff}
-    td{
-      padding:12px 10px; border-bottom:1px solid #e5e7eb; vertical-align:top
-    }
-    .channel-number{font-weight:800; color:var(--primary); text-align:center; width:88px}
-    .channel-name{font-weight:700}
-    .channel-category{color:var(--muted); font-size:.88rem}
-
-    .loading{
-      text-align:center; padding:2rem; font-style:italic; color:#6b7280
+    .header-text {
+      flex: 1;
     }
 
-    /* Mobile-first card view */
-    @media (max-width: 640px){
-      .container{margin:1rem auto 1.5rem}
-      .guide-container{border-radius:14px}
-      thead{display:none}
-      .table-container{max-height:none}
-      table, tbody, tr, td{display:block; width:100%}
-      tbody tr{
-        background:#fff; border:1px solid #e5e7eb; border-radius:14px;
-        padding:.5rem .6rem; margin:.6rem auto; box-shadow:0 4px 12px rgba(0,0,0,.05)
-      }
-      td{
-        display:flex; align-items:flex-start; justify-content:space-between; gap:.75rem;
-        padding:.55rem .25rem; border:0
-      }
-      td::before{
-        content:attr(data-label);
-        font-weight:700; color:#1f2937; flex:0 0 38%;
-      }
-      .channel-number{font-size:1.05rem}
-      .channel-name{font-size:1rem}
-      .channel-category{font-size:.9rem}
+    h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .sub {
+      font-size: 0.875rem;
+      opacity: 0.9;
+    }
+
+    /* Main Layout */
+    .container {
+      max-width: 1200px;
+      margin: 1.5rem auto;
+      padding: 0 1rem;
+    }
+
+    /* Search & Filter */
+    .search-section {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .search-box {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.875rem 1rem 0.875rem 3rem;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      background: var(--white);
+      transition: var(--transition);
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-500);
+    }
+
+    .filter-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .category-filter {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.25rem;
+      scrollbar-width: none;
+    }
+
+    .category-filter::-webkit-scrollbar {
+      display: none;
+    }
+
+    .category-btn {
+      padding: 0.5rem 1rem;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-300);
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .category-btn:hover {
+      background: var(--gray-200);
+    }
+
+    .category-btn.active {
+      background: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+    }
+
+    .results-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .pill {
+      background: var(--gray-200);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .reset-btn {
+      background: none;
+      border: 1px solid var(--gray-300);
+      padding: 0.5rem 0.875rem;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .reset-btn:hover {
+      background: var(--gray-100);
+    }
+
+    /* Channel Grid */
+    .channel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .channel-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .channel-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .channel-header {
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .channel-number {
+      font-weight: 700;
+      font-size: 1.1rem;
+      min-width: 40px;
+    }
+
+    .channel-name {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .channel-body {
+      padding: 1rem;
+    }
+
+    .channel-category {
+      display: inline-block;
+      background: var(--gray-100);
+      color: var(--gray-700);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .channel-description {
+      color: var(--gray-600);
+      font-size: 0.875rem;
+      line-height: 1.5;
     }
 
     /* Footer */
-    footer{
-      background:var(--dark); color:#fff; padding:1.2rem .75rem; text-align:center; margin-top:1.25rem
+    footer {
+      background: var(--primary);
+      color: var(--white);
+      padding: 2rem 1rem;
+      margin-top: 3rem;
     }
-    .footer-content{max-width:1200px; margin:0 auto}
-    .footer-logo{width:100px; height:auto; margin:.25rem auto .75rem; opacity:.9}
-    .address{margin-bottom:.6rem; font-size:.95rem; opacity:.9}
-    .address p{margin:.15rem 0}
-    .copyright{font-size:.85rem; opacity:.7}
 
-    /* Prefers-reduced-motion */
-    @media (prefers-reduced-motion: reduce){
-      *{animation:none!important; transition:none!important; scroll-behavior:auto!important}
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .footer-logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin: 0 auto 1rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 5px;
+    }
+
+    .address {
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .address p {
+      margin: 0.25rem 0;
+    }
+
+    .copyright {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .channel-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .filter-controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .category-filter {
+        order: 2;
+      }
+      
+      .results-info {
+        order: 1;
+        justify-content: space-between;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+      }
+      
+      .hotel-logo {
+        width: 40px;
+        height: 40px;
+      }
+      
+      h1 {
+        font-size: 1.1rem;
+      }
+    }
+
+    /* Utilities */
+    .hidden {
+      display: none;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Loading animation */
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      grid-column: 1 / -1;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid var(--gray-200);
+      border-top: 4px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
   <header role="banner">
-    <img src="logo.png" alt="Comfort Suites Logo" class="hotel-logo" loading="lazy" />
-    <h1>Comfort Suites – TV Channel Guide</h1>
-    <p class="sub">Find your channel fast, on any device.</p>
+    <div class="header-content">
+      <img src="logo.png" alt="Comfort Suites Logo" class="hotel-logo" loading="lazy" />
+      <div class="header-text">
+        <h1>Comfort Suites – TV Channel Guide</h1>
+        <p class="sub">Find your channel fast, on any device.</p>
+      </div>
+    </div>
   </header>
 
   <main class="container" role="main">
-    <section class="search-filter" aria-label="Search and filter">
-      <div class="row">
-        <div class="search-box">
-          <i class="fas fa-search ico" aria-hidden="true"></i>
-          <label for="searchInput" class="sr-only">Search channels</label>
-          <input id="searchInput" type="search" placeholder="Search channels, names, categories…" inputmode="search" autocomplete="off" aria-describedby="resultCount" />
-          <button class="clear-btn" id="clearBtn" title="Clear search" aria-label="Clear search" style="display:none">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
+    <section class="search-section" aria-label="Search and filter channels">
+      <div class="search-box">
+        <i class="fas fa-search search-icon" aria-hidden="true"></i>
+        <label for="searchInput" class="sr-only">Search channels</label>
+        <input 
+          id="searchInput" 
+          type="search" 
+          placeholder="Search channels, names, categories…" 
+          inputmode="search" 
+          autocomplete="off" 
+          aria-describedby="resultCount"
+        />
+      </div>
 
-        <div class="meta">
+      <div class="filter-controls">
+        <div class="category-filter" id="categoryFilter" role="tablist" aria-label="Filter by category">
+          <!-- Category buttons will be injected here -->
+        </div>
+        
+        <div class="results-info">
           <span class="pill" id="resultCount">Loading…</span>
           <button class="reset-btn" id="resetBtn" type="button">
             Reset Filters
           </button>
         </div>
       </div>
-
-      <div class="category-filter" id="categoryFilter" role="tablist" aria-label="Filter by category">
-        <!-- Chips injected -->
-      </div>
     </section>
 
-    <section class="guide-container" aria-label="Channel lineup">
-      <div class="guide-header">
-        <i class="fas fa-tv" aria-hidden="true"></i>
-        <span>Comfort Suites Channel Lineup</span>
-      </div>
-
-      <div class="table-container" role="region" aria-live="polite" aria-label="Channel results">
-        <table class="channel-table" id="channelTable">
-          <thead>
-            <tr>
-              <th scope="col">Channel</th>
-              <th scope="col">Name</th>
-              <th scope="col">Category</th>
-              <th scope="col">Description</th>
-            </tr>
-          </thead>
-          <tbody id="channelTableBody">
-            <tr>
-              <td colspan="4" class="loading">Loading channel guide...</td>
-            </tr>
-          </tbody>
-        </table>
+    <section class="channel-grid" id="channelGrid" aria-label="Channel lineup">
+      <div class="loading">
+        <div class="spinner" aria-hidden="true"></div>
+        <span class="sr-only">Loading channels...</span>
       </div>
     </section>
   </main>
@@ -298,7 +452,7 @@
   </footer>
 
   <script>
-    // --- CSV DATA (unchanged: names & codes preserved) ---
+    // --- CSV DATA (unchanged) ---
     const csvData = `channel,name,category,description
 3,GUIDELO,Guide,Interactive channel guide for navigating TV services.
 6,ABC,Entertainment,National network offering dramas, comedies, news, and reality shows.
@@ -449,15 +603,15 @@
     const $ = sel => document.querySelector(sel);
     const $$ = sel => Array.from(document.querySelectorAll(sel));
 
-    function parseCSV(csv){
+    function parseCSV(csv) {
       const lines = csv.trim().split('\n');
       const headers = lines[0].split(',');
       const out = [];
-      for(let i=1;i<lines.length;i++){
-        if(!lines[i]) continue;
+      for (let i = 1; i < lines.length; i++) {
+        if (!lines[i]) continue;
         const cols = lines[i].split(',');
         const obj = {};
-        for(let j=0;j<headers.length;j++){
+        for (let j = 0; j < headers.length; j++) {
           obj[headers[j]] = (cols[j] ?? '').trim();
         }
         out.push(obj);
@@ -471,45 +625,46 @@
     let debounceId = null;
 
     // --- Rendering ---
-    function displayChannels(list){
-      const body = $('#channelTableBody');
-      body.innerHTML = '';
-      if(!list.length){
-        body.innerHTML = '<tr><td colspan="4" class="loading">No channels found matching your criteria.</td></tr>';
+    function displayChannels(list) {
+      const grid = $('#channelGrid');
+      
+      if (!list.length) {
+        grid.innerHTML = `
+          <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+            <i class="fas fa-tv" style="font-size: 3rem; color: var(--gray-400); margin-bottom: 1rem;"></i>
+            <h3 style="color: var(--gray-600); margin-bottom: 0.5rem;">No channels found</h3>
+            <p style="color: var(--gray-500);">Try adjusting your search or filters</p>
+          </div>
+        `;
         $('#resultCount').textContent = '0 results';
         return;
       }
+      
+      grid.innerHTML = '';
       list.forEach(ch => {
-        const tr = document.createElement('tr');
-        tr.setAttribute('data-category', (ch.category||'').toLowerCase());
-
-        const td1 = document.createElement('td');
-        td1.className = 'channel-number';
-        td1.setAttribute('data-label','Channel');
-        td1.textContent = ch.channel;
-
-        const td2 = document.createElement('td');
-        td2.className = 'channel-name';
-        td2.setAttribute('data-label','Name');
-        td2.textContent = ch.name;
-
-        const td3 = document.createElement('td');
-        td3.className = 'channel-category';
-        td3.setAttribute('data-label','Category');
-        td3.textContent = ch.category;
-
-        const td4 = document.createElement('td');
-        td4.setAttribute('data-label','Description');
-        td4.textContent = ch.description;
-
-        tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3); tr.appendChild(td4);
-        body.appendChild(tr);
+        const card = document.createElement('div');
+        card.className = 'channel-card';
+        card.setAttribute('data-category', (ch.category || '').toLowerCase());
+        
+        card.innerHTML = `
+          <div class="channel-header">
+            <div class="channel-number">${ch.channel}</div>
+            <div class="channel-name">${ch.name}</div>
+          </div>
+          <div class="channel-body">
+            <span class="channel-category">${ch.category}</span>
+            <p class="channel-description">${ch.description}</p>
+          </div>
+        `;
+        
+        grid.appendChild(card);
       });
-      $('#resultCount').textContent = `${list.length} result${list.length===1?'':'s'}`;
+      
+      $('#resultCount').textContent = `${list.length} channel${list.length === 1 ? '' : 's'}`;
     }
 
-    function buildCategoryChips(list){
-      const cats = Array.from(new Set(list.map(c => c.category))).sort((a,b)=>a.localeCompare(b));
+    function buildCategoryChips(list) {
+      const cats = Array.from(new Set(list.map(c => c.category))).sort((a, b) => a.localeCompare(b));
       const wrap = $('#categoryFilter');
       wrap.innerHTML = '';
 
@@ -517,86 +672,77 @@
       const allBtn = document.createElement('button');
       allBtn.className = 'category-btn active';
       allBtn.type = 'button';
-      allBtn.setAttribute('role','tab');
-      allBtn.setAttribute('aria-selected','true');
+      allBtn.setAttribute('role', 'tab');
+      allBtn.setAttribute('aria-selected', 'true');
       allBtn.textContent = 'All';
       allBtn.addEventListener('click', () => selectCategory('all', allBtn));
       wrap.appendChild(allBtn);
 
-      cats.forEach(cat=>{
+      cats.forEach(cat => {
         const btn = document.createElement('button');
         btn.className = 'category-btn';
         btn.type = 'button';
-        btn.setAttribute('role','tab');
-        btn.setAttribute('aria-selected','false');
+        btn.setAttribute('role', 'tab');
+        btn.setAttribute('aria-selected', 'false');
         btn.textContent = cat;
-        btn.addEventListener('click', ()=> selectCategory(cat.toLowerCase(), btn));
+        btn.addEventListener('click', () => selectCategory(cat.toLowerCase(), btn));
         wrap.appendChild(btn);
       });
     }
 
-    function selectCategory(cat, btn){
+    function selectCategory(cat, btn) {
       activeCategory = cat;
-      $$('.category-btn').forEach(b=>{
+      $$('.category-btn').forEach(b => {
         b.classList.toggle('active', b === btn);
-        b.setAttribute('aria-selected', b===btn ? 'true' : 'false');
+        b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
       });
-      applyFilters(); // re-filter with current search
+      applyFilters();
     }
 
-    function applyFilters(){
+    function applyFilters() {
       const term = ($('#searchInput').value || '').trim().toLowerCase();
-      const filtered = channelsData.filter(ch=>{
-        const inCat = (activeCategory === 'all') || (ch.category||'').toLowerCase() === activeCategory;
-        if(!inCat) return false;
-        if(!term) return true;
-        // match any field
-        return (ch.channel+' '+ch.name+' '+ch.category+' '+ch.description).toLowerCase().includes(term);
+      const filtered = channelsData.filter(ch => {
+        const inCat = (activeCategory === 'all') || (ch.category || '').toLowerCase() === activeCategory;
+        if (!inCat) return false;
+        if (!term) return true;
+        return (ch.channel + ' ' + ch.name + ' ' + ch.category + ' ' + ch.description).toLowerCase().includes(term);
       });
       displayChannels(filtered);
-      $('#clearBtn').style.display = term ? 'block' : 'none';
     }
 
     // --- Init ---
-    document.addEventListener('DOMContentLoaded', ()=>{
+    document.addEventListener('DOMContentLoaded', () => {
       channelsData = parseCSV(csvData);
-      displayChannels(channelsData);
       buildCategoryChips(channelsData);
-      $('#resultCount').textContent = `${channelsData.length} results`;
+      displayChannels(channelsData);
 
       // Search events (debounced)
       const input = $('#searchInput');
-      input.addEventListener('input', ()=>{
+      input.addEventListener('input', () => {
         clearTimeout(debounceId);
         debounceId = setTimeout(applyFilters, 120);
       });
-      input.addEventListener('keydown', (e)=>{
-        if(e.key === 'Escape'){
-          input.value=''; applyFilters(); input.blur();
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          input.value = '';
+          applyFilters();
+          input.blur();
         }
       });
 
-      // Clear & Reset
-      $('#clearBtn').addEventListener('click', ()=>{
-        $('#searchInput').value=''; applyFilters(); $('#searchInput').focus();
-      });
-      $('#resetBtn').addEventListener('click', ()=>{
-        $('#searchInput').value='';
-        activeCategory='all';
+      // Reset
+      $('#resetBtn').addEventListener('click', () => {
+        $('#searchInput').value = '';
+        activeCategory = 'all';
         const chips = $$('.category-btn');
-        chips.forEach(b=>{
-          const isAll = b.textContent.trim().toLowerCase()==='all';
+        chips.forEach(b => {
+          const isAll = b.textContent.trim().toLowerCase() === 'all';
           b.classList.toggle('active', isAll);
           b.setAttribute('aria-selected', isAll ? 'true' : 'false');
         });
         applyFilters();
-      }, {passive:true});
+      }, { passive: true });
     });
   </script>
-
-  <!-- Small helper for screen readers -->
-  <style>
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-  </style>
 </body>
 </html>
