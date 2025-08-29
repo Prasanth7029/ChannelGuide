@@ -1,681 +1,895 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Comfort Suites - TV Channel Guide</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #2563eb;
-      --primary-light: #3b82f6;
-      --primary-dark: #1d4ed8;
-      --secondary: #f97316;
-      --light-bg: #f8fafc;
-      --card-bg: #ffffff;
-      --text-primary: #1e293b;
-      --text-secondary: #64748b;
-      --text-light: #94a3b8;
-      --border-color: #e2e8f0;
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      --radius: 12px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comfort Suites TV Channel Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+           --primary: #0056b3;
+           --primary-light: #4d8fd6;
+           --secondary: #ff7e33;
+           --accent: #00c3ff;
+           --dark: #1a2b50;
+           --light: #f8f9fa;
+           --white: #ffffff;
+           --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+           --transition: all 0.3s ease;
+           --border-radius: 12px;
+       }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+       * {
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box;
+       }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--light-bg);
-      color: var(--text-primary);
-      line-height: 1.6;
-    }
+       body {
+           font-family: 'Poppins', sans-serif;
+           background-color: var(--light);
+           color: var(--dark);
+           line-height: 1.5;
+           overflow-x: hidden;
+           padding-bottom: env(safe-area-inset-bottom);
+       }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
+       /* Header styles */
+       header {
+           text-align: center;
+           padding: 1rem 0.5rem;
+           background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+           color: white;
+           position: relative;
+           overflow: hidden;
+           box-shadow: var(--shadow);
+           padding-top: max(1rem, env(safe-area-inset-top));
+       }
 
-    /* Header Styles */
-    header {
-      background: linear-gradient(135deg, var(--primary), var(--primary-light));
-      color: white;
-      padding: 1.25rem 1rem;
-      box-shadow: var(--shadow);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+       .hotel-logo {
+           width: 80px;
+           height: auto;
+           margin-bottom: 0.5rem;
+           filter: drop-shadow(var(--shadow));
+       }
 
-    .header-content {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+       h1 {
+           font-family: 'Playfair Display', serif;
+           color: var(--white);
+           font-size: clamp(1.8rem, 5vw, 2.5rem);
+           margin-bottom: 0.5rem;
+       }
 
-    .logo {
-      width: 50px;
-      height: 50px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+       .manager {
+           font-weight: 600;
+           font-size: clamp(0.9rem, 3vw, 1.1rem);
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           gap: 0.5rem;
+       }
 
-    .logo i {
-      font-size: 1.5rem;
-    }
+       /* Main content */
+       .container {
+           max-width: 1200px;
+           margin: 1.5rem auto;
+           padding: 0 1rem;
+       }
 
-    .header-text h1 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 0.25rem;
-    }
+       .guide-container {
+           background: var(--white);
+           border-radius: var(--border-radius);
+           box-shadow: var(--shadow);
+           overflow: hidden;
+           margin-bottom: 2rem;
+       }
 
-    .header-text p {
-      font-size: 0.9rem;
-      opacity: 0.9;
-    }
+       .guide-header {
+           background: var(--primary);
+           color: white;
+           padding: 1rem;
+           text-align: center;
+           font-size: clamp(1.2rem, 4vw, 1.5rem);
+           font-weight: 600;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           gap: 0.5rem;
+       }
 
-    /* Search and Filter Section */
-    .search-section {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 1.25rem;
-      margin: 1.5rem 0;
-      box-shadow: var(--shadow);
-    }
+       /* Channel Guide Table Styles */
+       .channel-table {
+           width: 100%;
+           border-collapse: collapse;
+           font-size: clamp(0.8rem, 2.5vw, 1rem);
+       }
 
-    .search-box {
-      position: relative;
-      margin-bottom: 1rem;
-    }
+       .channel-table th {
+           background-color: var(--primary-light);
+           color: white;
+           padding: 0.75rem 0.5rem;
+           text-align: left;
+           position: sticky;
+           top: 0;
+           z-index: 10;
+       }
 
-    .search-box input {
-      width: 100%;
-      padding: 0.875rem 1rem 0.875rem 3rem;
-      border: 1px solid var(--border-color);
-      border-radius: 50px;
-      font-size: 1rem;
-      background: var(--light-bg);
-      transition: all 0.2s ease;
-    }
+       .channel-table tr:nth-child(even) {
+           background-color: #f2f2f2;
+       }
 
-    .search-box input:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-    }
+       .channel-table tr:hover {
+           background-color: #e6f0ff;
+       }
 
-    .search-icon {
-      position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-light);
-    }
+       .channel-table td {
+           padding: 0.75rem 0.5rem;
+           border-bottom: 1px solid #ddd;
+           word-wrap: break-word;
+       }
 
-    .filter-controls {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
+       .channel-number {
+           font-weight: bold;
+           color: var(--primary);
+           width: 60px;
+           text-align: center;
+       }
 
-    .category-filter {
-      display: flex;
-      gap: 0.5rem;
-      overflow-x: auto;
-      padding-bottom: 0.25rem;
-      scrollbar-width: none;
-    }
+       .channel-name {
+           font-weight: 600;
+       }
 
-    .category-filter::-webkit-scrollbar {
-      display: none;
-    }
+       .channel-category {
+           color: #666;
+           font-size: 0.75rem;
+       }
 
-    .category-btn {
-      padding: 0.5rem 1rem;
-      background: var(--light-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 50px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      white-space: nowrap;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
+       /* Search and Filter */
+       .search-filter {
+           display: flex;
+           flex-direction: column;
+           margin-bottom: 1.5rem;
+           gap: 1rem;
+       }
 
-    .category-btn:hover {
-      background: var(--primary-light);
-      color: white;
-      border-color: var(--primary-light);
-    }
+       .search-box {
+           width: 100%;
+           position: relative;
+       }
 
-    .category-btn.active {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
+       .search-box input {
+           width: 100%;
+           padding: 0.75rem 1rem 0.75rem 2.5rem;
+           border: 1px solid #ddd;
+           border-radius: 30px;
+           font-size: 1rem;
+           transition: var(--transition);
+       }
 
-    .results-info {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
+       .search-box input:focus {
+           outline: none;
+           border-color: var(--primary);
+           box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
+       }
 
-    .pill {
-      background: var(--light-bg);
-      padding: 0.35rem 0.75rem;
-      border-radius: 50px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-    }
+       .search-box i {
+           position: absolute;
+           left: 1rem;
+           top: 50%;
+           transform: translateY(-50%);
+           color: #777;
+       }
 
-    .reset-btn {
-      background: none;
-      border: 1px solid var(--border-color);
-      padding: 0.5rem 0.875rem;
-      border-radius: 6px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      color: var(--text-secondary);
-    }
+       .category-filter {
+           display: flex;
+           gap: 0.5rem;
+           overflow-x: auto;
+           padding-bottom: 0.5rem;
+           -webkit-overflow-scrolling: touch;
+           scrollbar-width: none;
+       }
 
-    .reset-btn:hover {
-      background: var(--light-bg);
-    }
+       .category-filter::-webkit-scrollbar {
+           display: none;
+       }
 
-    /* Channel List */
-    .channel-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
-    }
+       .category-btn {
+           padding: 0.5rem 1rem;
+           background: white;
+           border: 1px solid #ddd;
+           border-radius: 30px;
+           font-size: 0.8rem;
+           cursor: pointer;
+           transition: var(--transition);
+           white-space: nowrap;
+           flex-shrink: 0;
+       }
 
-    .channel-item {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      box-shadow: var(--shadow);
-      transition: all 0.2s ease;
-    }
+       .category-btn:hover, .category-btn.active {
+           background: var(--primary);
+           color: white;
+           border-color: var(--primary);
+       }
 
-    .channel-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    }
+       /* Table container with scroll */
+       .table-container {
+           max-height: 60vh;
+           overflow-y: auto;
+           position: relative;
+           -webkit-overflow-scrolling: touch;
+       }
 
-    .channel-number {
-      background: var(--primary);
-      color: white;
-      width: 50px;
-      height: 50px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
+       /* Loading state */
+       .loading {
+           text-align: center;
+           padding: 2rem;
+           font-style: italic;
+           color: #666;
+       }
 
-    .channel-info {
-      flex: 1;
-      min-width: 0;
-    }
+       /* Mobile channel card view */
+       .channel-cards {
+           display: none;
+       }
 
-    .channel-name {
-      font-weight: 600;
-      font-size: 1.1rem;
-      margin-bottom: 0.25rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+       .channel-card {
+           padding: 1rem;
+           border-bottom: 1px solid #eee;
+       }
 
-    .channel-category {
-      color: var(--primary);
-      font-size: 0.875rem;
-      font-weight: 500;
-      margin-bottom: 0.25rem;
-    }
+       .channel-card-header {
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           margin-bottom: 0.5rem;
+       }
 
-    .channel-description {
-      color: var(--text-secondary);
-      font-size: 0.875rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+       .channel-card-number {
+           font-weight: bold;
+           color: var(--primary);
+           font-size: 1.2rem;
+       }
 
-    /* Footer */
-    footer {
-      background: var(--text-primary);
-      color: white;
-      padding: 2rem 1rem;
-      margin-top: 2rem;
-    }
+       .channel-card-name {
+           font-weight: 600;
+           font-size: 1.1rem;
+           margin-bottom: 0.25rem;
+       }
 
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      text-align: center;
-    }
+       .channel-card-category {
+           color: #666;
+           font-size: 0.8rem;
+           margin-bottom: 0.5rem;
+           display: inline-block;
+           padding: 0.2rem 0.6rem;
+           background: #f0f0f0;
+           border-radius: 12px;
+       }
 
-    .footer-logo {
-      width: 60px;
-      height: 60px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem;
-    }
+       /* View toggle */
+       .view-toggle {
+           display: flex;
+           justify-content: flex-end;
+           margin-bottom: 1rem;
+           gap: 0.5rem;
+       }
 
-    .footer-logo i {
-      font-size: 1.5rem;
-    }
+       .view-btn {
+           padding: 0.5rem;
+           background: white;
+           border: 1px solid #ddd;
+           border-radius: 8px;
+           cursor: pointer;
+           transition: var(--transition);
+       }
 
-    .address {
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
-    }
+       .view-btn.active {
+           background: var(--primary);
+           color: white;
+           border-color: var(--primary);
+       }
 
-    .address p {
-      margin: 0.25rem 0;
-    }
+       /* Footer */
+       footer {
+           background: var(--dark);
+           color: var(--white);
+           padding: 1.5rem 1rem;
+           text-align: center;
+           margin-top: 2rem;
+           padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+       }
 
-    .copyright {
-      font-size: 0.8rem;
-      opacity: 0.8;
-    }
+       .footer-content {
+           max-width: 1200px;
+           margin: 0 auto;
+       }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .header-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 0.75rem;
-      }
-      
-      .filter-controls {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      
-      .category-filter {
-        order: 2;
-      }
-      
-      .results-info {
-        order: 1;
-        justify-content: space-between;
-      }
-      
-      .channel-item {
-        flex-direction: column;
-        text-align: center;
-        gap: 0.75rem;
-      }
-      
-      .channel-info {
-        width: 100%;
-      }
-    }
+       .footer-logo {
+           width: 80px;
+           height: auto;
+           margin-bottom: 1rem;
+           opacity: 0.8;
+       }
 
-    @media (max-width: 480px) {
-      .header-text h1 {
-        font-size: 1.25rem;
-      }
-      
-      .search-box input {
-        padding: 0.75rem 1rem 0.75rem 2.75rem;
-      }
-      
-      .channel-number {
-        width: 45px;
-        height: 45px;
-      }
-    }
+       .address {
+           margin-bottom: 1rem;
+           font-size: 0.9rem;
+           opacity: 0.8;
+       }
 
-    /* Utilities */
-    .hidden {
-      display: none;
-    }
+       .address p {
+           margin-bottom: 0.5rem;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           gap: 0.5rem;
+       }
 
-    .no-results {
-      text-align: center;
-      padding: 2rem;
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
+       .copyright {
+           font-size: 0.8rem;
+           opacity: 0.6;
+       }
 
-    .no-results i {
-      font-size: 3rem;
-      color: var(--text-light);
-      margin-bottom: 1rem;
-    }
-  </style>
+       /* Responsive adjustments */
+       @media (max-width: 768px) {
+           .container {
+               margin: 1rem auto;
+               padding: 0 0.75rem;
+           }
+           
+           .channel-table thead {
+               display: none;
+           }
+           
+           .channel-table tr {
+               display: block;
+               margin-bottom: 1rem;
+               border: 1px solid #ddd;
+               border-radius: 8px;
+           }
+           
+           .channel-table td {
+               display: block;
+               text-align: left;
+               padding: 0.75rem;
+               border-bottom: 1px solid #eee;
+           }
+           
+           .channel-table td:last-child {
+               border-bottom: none;
+           }
+           
+           .channel-table td::before {
+               content: attr(data-label);
+               float: left;
+               font-weight: bold;
+               margin-right: 0.5rem;
+           }
+           
+           .channel-number {
+               background-color: var(--primary-light);
+               color: white;
+               padding: 0.5rem;
+               border-radius: 6px;
+               width: auto;
+               margin-bottom: 0.5rem;
+               display: inline-block;
+           }
+           
+           .table-container {
+               max-height: none;
+           }
+           
+           /* Show card view on mobile */
+           .channel-cards {
+               display: block;
+           }
+           
+           .table-view {
+               display: none;
+           }
+       }
+
+       @media (max-width: 480px) {
+           header {
+               padding: 0.75rem;
+           }
+           
+           .hotel-logo {
+               width: 70px;
+           }
+           
+           .guide-header {
+               padding: 0.75rem;
+           }
+           
+           .search-box input {
+               padding: 0.6rem 0.75rem 0.6rem 2.25rem;
+           }
+           
+           .search-box i {
+               left: 0.75rem;
+           }
+           
+           .category-btn {
+               padding: 0.4rem 0.8rem;
+               font-size: 0.75rem;
+           }
+           
+           .channel-card {
+               padding: 0.75rem;
+           }
+       }
+
+       /* High contrast mode support */
+       @media (prefers-contrast: high) {
+           .channel-table tr:nth-child(even) {
+               background-color: #e0e0e0;
+           }
+           
+           .channel-table tr:hover {
+               background-color: #c9e0ff;
+           }
+           
+           .channel-category {
+               font-weight: bold;
+           }
+       }
+
+       /* Reduced motion support */
+       @media (prefers-reduced-motion: reduce) {
+           * {
+               transition: none !important;
+           }
+       }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="header-content">
-      <div class="logo">
-        <i class="fas fa-tv"></i>
-      </div>
-      <div class="header-text">
-        <h1>Comfort Suites – TV Channel Guide</h1>
-        <p>Find your channel fast, on any device.</p>
-      </div>
+<header>
+    <img src="logo.png" alt="Comfort Suites Logo" class="hotel-logo">
+    <h1>Comfort Suites</h1>
+    <p class="manager"><i class="fas fa-tv"></i> TV Channel Guide</p>
+</header>
+
+<main class="container">
+    <div class="view-toggle">
+        <button class="view-btn active" id="cardViewBtn" aria-label="Card view">
+            <i class="fas fa-th-large"></i>
+        </button>
+        <button class="view-btn" id="tableViewBtn" aria-label="Table view">
+            <i class="fas fa-table"></i>
+        </button>
     </div>
-  </header>
 
-  <div class="container">
-    <section class="search-section">
-      <div class="search-box">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" id="searchInput" placeholder="Search channels, names, categories...">
-      </div>
-
-      <div class="filter-controls">
+    <div class="search-filter">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search channels..." aria-label="Search channels">
+        </div>
         <div class="category-filter" id="categoryFilter">
-          <button class="category-btn active" data-category="all">All Channels</button>
-          <button class="category-btn" data-category="entertainment">Entertainment</button>
-          <button class="category-btn" data-category="sports">Sports</button>
-          <button class="category-btn" data-category="news">News</button>
-          <button class="category-btn" data-category="movies">Movies</button>
-          <button class="category-btn" data-category="educational">Educational</button>
-          <button class="category-btn" data-category="kids">Kids</button>
-          <button class="category-btn" data-category="music">Music</button>
-          <button class="category-btn" data-category="lifestyle">Lifestyle</button>
-          <button class="category-btn" data-category="international">International</button>
-          <button class="category-btn" data-category="religious">Religious</button>
-          <button class="category-btn" data-category="guide">Guide</button>
-          <button class="category-btn" data-category="shopping">Shopping</button>
+            <!-- Categories will be dynamically generated -->
         </div>
-        
-        <div class="results-info">
-          <span class="pill" id="resultCount">215 channels</span>
-          <button class="reset-btn" id="resetBtn">
-            Reset Filters
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <section class="channel-list" id="channelList">
-      <!-- Channel items will be dynamically inserted here -->
-    </section>
-  </div>
-
-  <footer>
-    <div class="footer-content">
-      <div class="footer-logo">
-        <i class="fas fa-tv"></i>
-      </div>
-      <div class="address">
-        <p><i class="fas fa-map-marker-alt"></i> 121 Raydo Circle, Springfield, OH, 45506, US</p>
-        <p><i class="fas fa-phone"></i> (937) 322-0707</p>
-      </div>
-      <p class="copyright">© 2025 Comfort Suites Springfield, Ohio. All rights reserved.</p>
     </div>
-  </footer>
 
-  <script>
-    // Channel data (truncated for brevity, but includes all channels from your original data)
-    const channels = [
-      { channel: "3", name: "GUIDELO", category: "Guide", description: "Interactive channel guide for navigating TV services." },
-      { channel: "6", name: "ABC", category: "Entertainment", description: "National network offering dramas, comedies, news, and reality shows." },
-      { channel: "7", name: "ABC2", category: "Entertainment", description: "Secondary ABC channel with additional programming and local content." },
-      { channel: "8", name: "CBS", category: "Entertainment", description: "Features dramas, sitcoms, news, and sports events." },
-      { channel: "10", name: "FOX", category: "Entertainment", description: "Provides a mix of dramas, reality TV, sports, and news." },
-      { channel: "12", name: "NBC", category: "Entertainment", description: "Offers popular shows, sports, and national news broadcasts." },
-      { channel: "13", name: "NBC2", category: "Entertainment", description: "Secondary NBC channel with varied programming and local focus." },
-      { channel: "14", name: "CW", category: "Entertainment", description: "Airs youth-oriented dramas, comedies, and reality shows." },
-      { channel: "15", name: "CW2", category: "Entertainment", description: "Additional CW channel with similar programming and specials." },
-      { channel: "16", name: "PBS", category: "Educational", description: "Public broadcasting with educational, cultural, and documentary programs." },
-      { channel: "17", name: "PBS2", category: "Educational", description: "Secondary PBS channel with more educational content and kids' shows." },
-      { channel: "36", name: "ION", category: "Entertainment", description: "Features syndicated shows, movies, and original dramas." },
-      { channel: "37", name: "METV", category: "Entertainment", description: "Classic TV network with retro shows and nostalgic programming." },
-      { channel: "38", name: "MYNET", category: "Entertainment", description: "Offers syndicated series, sports, and movies." },
-      { channel: "41", name: "TELEM", category: "International", description: "Spanish-language network with telenovelas, news, and sports." },
-      { channel: "42", name: "UNIMAS", category: "International", description: "Spanish-language channel with movies, sports, and dramas." },
-      { channel: "43", name: "UNV", category: "International", description: "Spanish-language network with entertainment and news." },
-      { channel: "44", name: "DYSTR", category: "Entertainment", description: "Daystar provides Christian programming and inspirational content." },
-      { channel: "45", name: "TBN", category: "Religious", description: "Christian network with sermons, talk shows, and family-friendly content." },
-      { channel: "51", name: "RSN", category: "Sports", description: "Regional sports network covering local teams and events." },
-      { channel: "52", name: "RSN", category: "Sports", description: "Additional regional sports channel for local games and analysis." },
-      { channel: "57", name: "GUIDED1", category: "Guide", description: "Additional interactive channel guide service." },
-      { channel: "58", name: "USA", category: "Entertainment", description: "Features dramas, comedies, and live sports events." },
-      { channel: "59", name: "AETV", category: "Entertainment", description: "Reality TV and documentaries focusing on real-life stories." },
-      { channel: "60", name: "TNT", category: "Entertainment", description: "Airs dramas, movies, and major sports events." },
-      { channel: "61", name: "TBS", category: "Entertainment", description: "Comedy-focused channel with sitcoms and movies." },
-      { channel: "62", name: "AMC", category: "Movies", description: "Features classic and contemporary films and original series." },
-      { channel: "63", name: "DSC", category: "Educational", description: "Discovery Channel offers science, nature, and adventure documentaries." },
-      { channel: "64", name: "HISTORY", category: "Educational", description: "Documentaries and series on historical events and figures." },
-      { channel: "65", name: "FX", category: "Entertainment", description: "Original dramas, comedies, and blockbuster movies." },
-      { channel: "66", name: "BBCA", category: "Entertainment", description: "British programming including dramas, comedies, and sci-fi." },
-      { channel: "67", name: "SYFY", category: "Entertainment", description: "Science fiction, fantasy, and horror series and films." },
-      { channel: "68", name: "TRUTV", category: "Entertainment", description: "Reality shows and comedic programming." },
-      { channel: "69", name: "COMEDY", category: "Entertainment", description: "Comedy Central airs stand-up, sketches, and sitcoms." },
-      { channel: "70", name: "PAR", category: "Entertainment", description: "Paramount Network offers dramas and reality shows." },
-      { channel: "71", name: "VH1", category: "Music", description: "Music videos, reality shows, and pop culture programming." },
-      { channel: "72", name: "MTV", category: "Music", description: "Music videos, reality TV, and youth-oriented series." },
-      { channel: "73", name: "TVLAND", category: "Entertainment", description: "Classic and modern sitcoms with a nostalgic feel." },
-      { channel: "75", name: "HALL", category: "Movies", description: "Heartwarming movies and family-friendly series." },
-      { channel: "76", name: "NGC", category: "Educational", description: "National Geographic features wildlife and cultural documentaries." },
-      { channel: "77", name: "APL", category: "Educational", description: "Animal Planet focuses on animal-related shows and documentaries." },
-      { channel: "78", name: "SCIENCE", category: "Educational", description: "Science Channel explores technology, space, and innovation." },
-      { channel: "79", name: "AHC", category: "Educational", description: "American Heroes Channel covers military history and stories." },
-      { channel: "80", name: "HGTV", category: "Lifestyle", description: "Home and garden renovation and design shows." },
-      { channel: "81", name: "FOOD", category: "Lifestyle", description: "Food Network offers cooking shows and culinary competitions." },
-      { channel: "82", name: "TRAV", category: "Lifestyle", description: "Travel Channel showcases destinations and adventure travel." },
-      { channel: "83", name: "TLC", category: "Lifestyle", description: "Reality shows on family, lifestyle, and personal stories." },
-      { channel: "84", name: "BRAVO", category: "Entertainment", description: "Reality TV, dramas, and lifestyle programming." },
-      { channel: "85", name: "EI", category: "Entertainment", description: "E! focuses on celebrity news and pop culture shows." },
-      { channel: "86", name: "LIFE", category: "Movies", description: "Lifetime airs women-centric movies and dramas." },
-      { channel: "87", name: "OWN", category: "Lifestyle", description: "Oprah Winfrey Network with inspirational and lifestyle content." },
-      { channel: "88", name: "BET", category: "Entertainment", description: "Black Entertainment Television offers music, series, and movies." },
-      { channel: "89", name: "OVATION", category: "Entertainment", description: "Arts and culture programming with films and performances." },
-      { channel: "90", name: "CNN", category: "News", description: "24/7 news covering global events and politics." },
-      { channel: "91", name: "FNC", category: "News", description: "Fox News Channel provides conservative news and commentary." },
-      { channel: "92", name: "MSNBC", category: "News", description: "News and analysis with a progressive perspective." },
-      { channel: "93", name: "HLN", category: "News", description: "Headline News offers crime stories and news updates." },
-      { channel: "94", name: "CNBC", category: "News", description: "Business and financial news and talk shows." },
-      { channel: "95", name: "FBN", category: "News", description: "Fox Business Network covers markets and economic news." },
-      { channel: "96", name: "BLOOM", category: "News", description: "Bloomberg Television focuses on global finance and business." },
-      { channel: "97", name: "WEATH", category: "News", description: "Weather Channel provides forecasts and weather news." },
-      { channel: "98", name: "CSPAN", category: "News", description: "Public affairs and government proceedings coverage." },
-      { channel: "99", name: "DISN", category: "Kids", description: "Disney Channel offers family-friendly shows and movies." },
-      { channel: "100", name: "BOOM", category: "Kids", description: "Boomerang airs classic and new animated series." },
-      { channel: "102", name: "UKIDS", category: "Kids", description: "Universal Kids provides educational and fun kids' programming." },
-      { channel: "103", name: "NICKJR", category: "Kids", description: "Nick Jr. offers preschool-friendly shows and learning content." },
-      { channel: "104", name: "NICK", category: "Kids", description: "Nickelodeon features animated and live-action kids' shows." },
-      { channel: "105", name: "TOON", category: "Kids", description: "Cartoon Network airs animated series and movies." },
-      { channel: "106", name: "DFC", category: "Kids", description: "Disney Junior provides programming for young children." },
-      { channel: "107", name: "CMT", category: "Music", description: "Country Music Television with music videos and shows." },
-      { channel: "108", name: "GACF", category: "Lifestyle", description: "Great American Country focuses on country lifestyle and music." },
-      { channel: "109", name: "ESPN", category: "Sports", description: "Leading sports network with live events and analysis." },
-      { channel: "110", name: "ESPN2", category: "Sports", description: "Secondary ESPN channel with additional sports coverage." },
-      { channel: "111", name: "GUIDED2", category: "Guide", description: "Another interactive channel guide service." },
-      { channel: "112", name: "TNF", category: "Sports", description: "Thursday Night Football broadcasts NFL games." },
-      { channel: "113", name: "SEC", category: "Sports", description: "SEC Network covers Southeastern Conference sports." },
-      { channel: "114", name: "FS1", category: "Sports", description: "Fox Sports 1 offers live sports and commentary." },
-      { channel: "115", name: "FS2", category: "Sports", description: "Fox Sports 2 provides extended sports coverage." },
-      { channel: "116", name: "MT", category: "Music", description: "MTV with music videos and reality programming." },
-      { channel: "117", name: "TCM", category: "Movies", description: "Turner Classic Movies airs classic films." },
-      { channel: "118", name: "HSN", category: "Shopping", description: "Home Shopping Network for retail and product showcases." },
-      { channel: "119", name: "EWTN", category: "Religious", description: "Global Catholic network with religious programming." },
-      { channel: "120", name: "SHOPHQ", category: "Shopping", description: "Shopping channel with jewelry, electronics, and more." },
-      { channel: "121", name: "QVC", category: "Shopping", description: "Retail channel offering a variety of products." },
-      { channel: "122", name: "CNNE", category: "International", description: "Spanish-language CNN with global news." },
-      { channel: "123", name: "NEWSNTN", category: "News", description: "NewsNation provides balanced news coverage." },
-      { channel: "124", name: "MTV2", category: "Music", description: "MTV2 focuses on music videos and alternative content." },
-      { channel: "125", name: "MTVCLAS", category: "Music", description: "MTV Classic airs retro music videos and shows." },
-      { channel: "126", name: "UP", category: "Religious", description: "Uplifting family-friendly movies and series." },
-      { channel: "128", name: "RFDHD", category: "Lifestyle", description: "Rural-focused programming on farming and country life." },
-      { channel: "129", name: "VICE", category: "Entertainment", description: "Documentaries and series on culture and lifestyle." },
-      { channel: "130", name: "FYI", category: "Lifestyle", description: "Reality and lifestyle shows on diverse topics." },
-      { channel: "131", name: "DEST", category: "Lifestyle", description: "Destination America explores American culture and travel." },
-      { channel: "132", name: "ID", category: "Educational", description: "Investigation Discovery focuses on true crime stories." },
-      { channel: "133", name: "ACUWTHR", category: "News", description: "AccuWeather provides detailed weather forecasts." },
-      { channel: "134", name: "COOK", category: "Lifestyle", description: "Cooking Channel offers recipes and culinary shows." },
-      { channel: "135", name: "OXYGEN", category: "Entertainment", description: "True crime and women-focused reality shows." },
-      { channel: "136", name: "WE", category: "Entertainment", description: "WE tv offers reality shows and dramas." },
-      { channel: "137", name: "POP", category: "Entertainment", description: "Pop culture-focused shows and light entertainment." },
-      { channel: "138", name: "GSN", category: "Entertainment", description: "Game Show Network with classic and new game shows." },
-      { channel: "139", name: "LOGO", category: "Entertainment", description: "LGBTQ+-focused programming and movies." },
-      { channel: "140", name: "DLC", category: "Educational", description: "Discovery Life covers health and real-life stories." },
-      { channel: "141", name: "BHER", category: "Entertainment", description: "BET Her offers content for Black women." },
-      { channel: "142", name: "TVONE", category: "Entertainment", description: "Programming focused on African American culture." },
-      { channel: "143", name: "BBCWLD", category: "News", description: "BBC World News delivers global news coverage." },
-      { channel: "144", name: "NIKTON", category: "Kids", description: "Nicktoons airs animated Nickelodeon series." },
-      { channel: "145", name: "TNCK", category: "Kids", description: "TeenNick targets teens with shows and movies." },
-      { channel: "147", name: "MTVLIVE", category: "Music", description: "MTV Live broadcasts live music performances." },
-      { channel: "148", name: "RVLT", category: "Entertainment", description: "Revolt focuses on hip-hop culture and music." },
-      { channel: "149", name: "FUSE", category: "Music", description: "Music videos and pop culture programming." },
-      { channel: "150", name: "INSP", category: "Religious", description: "Inspirational programming with family values." },
-      { channel: "151", name: "SUNDANC", category: "Movies", description: "SundanceTV airs independent films and series." },
-      { channel: "154", name: "LMN", category: "Movies", description: "Lifetime Movie Network with drama and thriller films." },
-      { channel: "155", name: "IFC", category: "Movies", description: "Independent Film Channel showcases indie films." },
-      { channel: "156", name: "HMM", category: "Movies", description: "Hallmark Movies & Mysteries with mystery films." },
-      { channel: "157", name: "BETSOUL", category: "Music", description: "Soul and R&B music videos and programming." },
-      { channel: "159", name: "BYUTV", category: "Religious", description: "Family-friendly content from Brigham Young University." },
-      { channel: "161", name: "IMPCNET", category: "Movies", description: "Impact Network offers faith-based and family content." },
-      { channel: "162", name: "MAGN", category: "Lifestyle", description: "Magnolia Network focuses on home and lifestyle shows." },
-      { channel: "163", name: "MTVU", category: "Music", description: "MTV University targets college audiences with music." },
-      { channel: "164", name: "NEWSMX", category: "International", description: "Newsmax provides conservative news and talk shows." },
-      { channel: "165", name: "BIGTEN", category: "Sports", description: "Big Ten Network covers college sports events." },
-      { channel: "166", name: "ACC", category: "Sports", description: "ACC Network focuses on Atlantic Coast Conference sports." },
-      { channel: "174", name: "GUIDESP", category: "Guide", description: "Spanish-language interactive channel guide." },
-      { channel: "175", name: "BEIN", category: "Sports", description: "beIN Sports covers international soccer and sports." },
-      { channel: "177", name: "CBSSN", category: "Sports", description: "CBS Sports Network with college sports and analysis." },
-      { channel: "187", name: "ESPND", category: "International", description: "Spanish-language ESPN with sports coverage." },
-      { channel: "189", name: "ESPNEWS", category: "Sports", description: "ESPN News provides sports updates and highlights." },
-      { channel: "190", name: "ESPNU", category: "Sports", description: "ESPN U focuses on college sports and events." },
-      { channel: "191", name: "FXDEP", category: "Sports", description: "Fox Deportes offers Spanish-language sports." },
-      { channel: "196", name: "GOLF", category: "Sports", description: "Golf Channel covers professional golf tournaments." },
-      { channel: "197", name: "MLBN", category: "Sports", description: "MLB Network with baseball games and analysis." },
-      { channel: "198", name: "MLBNSZ", category: "Sports", description: "MLB Network Strike Zone for live baseball highlights." },
-      { channel: "199", name: "NBATV", category: "Sports", description: "NBA TV covers basketball games and news." },
-      { channel: "200", name: "NFLNET", category: "Sports", description: "NFL Network with football games and analysis." },
-      { channel: "201", name: "NFLNRZ", category: "Sports", description: "NFL RedZone provides live NFL game coverage." },
-      { channel: "202", name: "NHLNET", category: "Sports", description: "NHL Network covers hockey games and news." },
-      { channel: "203", name: "COWBOY", category: "Lifestyle", description: "Cowboy Channel focuses on rodeo and western lifestyle." },
-      { channel: "204", name: "OUTD", category: "Sports", description: "Outdoor Channel covers hunting and fishing." },
-      { channel: "211", name: "SEC2", category: "Sports", description: "Secondary SEC channel for additional sports coverage." },
-      { channel: "212", name: "TENNIS", category: "Sports", description: "Tennis Channel covers professional tennis events." },
-      { channel: "213", name: "TVG", category: "Sports", description: "TVG focuses on horse racing and betting." },
-      { channel: "214", name: "TUDN", category: "International", description: "Spanish-language sports network with soccer focus." },
-      { channel: "215", name: "WILLOW", category: "Sports", description: "Willow TV covers international cricket matches." }
-    ];
+    <div class="guide-container">
+        <div class="guide-header">
+            <i class="fas fa-tv"></i> Comfort Suites Channel Lineup
+        </div>
+        
+        <!-- Card view for mobile -->
+        <div class="channel-cards" id="channelCards">
+            <div class="loading">Loading channel guide...</div>
+        </div>
+        
+        <!-- Table view for desktop -->
+        <div class="table-container table-view">
+            <table class="channel-table" id="channelTable">
+                <thead>
+                <tr>
+                    <th>Channel</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody id="channelTableBody">
+                <tr>
+                    <td colspan="4" class="loading">Loading channel guide...</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
 
-    // DOM elements
-    const channelList = document.getElementById('channelList');
-    const searchInput = document.getElementById('searchInput');
-    const categoryFilter = document.getElementById('categoryFilter');
-    const resultCount = document.getElementById('resultCount');
-    const resetBtn = document.getElementById('resetBtn');
+<footer>
+    <div class="footer-content">
+        <img src="logo.png" alt="Comfort Suites Logo" class="footer-logo">
+        <div class="address">
+            <p><i class="fas fa-map-marker-alt"></i> 121 Raydo Circle, Springfield, OH, 45506, US</p>
+            <p><i class="fas fa-phone"></i> (937) 322-0707</p>
+        </div>
+        <p class="copyright">© 2025 Comfort Suites Springfield, Ohio. All rights reserved.</p>
+    </div>
+</footer>
 
-    // Initialize the channel list
-    function renderChannels(channelsToRender) {
-      channelList.innerHTML = '';
-      
-      if (channelsToRender.length === 0) {
-        channelList.innerHTML = `
-          <div class="no-results">
-            <i class="fas fa-tv"></i>
-            <h3>No channels found</h3>
-            <p>Try adjusting your search or filters</p>
-          </div>
-        `;
-        return;
-      }
-      
-      channelsToRender.forEach(channel => {
-        const channelItem = document.createElement('div');
-        channelItem.className = 'channel-item';
-        channelItem.innerHTML = `
-          <div class="channel-number">${channel.channel}</div>
-          <div class="channel-info">
-            <div class="channel-name">${channel.name}</div>
-            <div class="channel-category">${channel.category}</div>
-            <div class="channel-description">${channel.description}</div>
-          </div>
-        `;
-        channelList.appendChild(channelItem);
-      });
-      
-      resultCount.textContent = `${channelsToRender.length} channel${channelsToRender.length !== 1 ? 's' : ''}`;
+<script>
+    // CSV data (this would normally be fetched from a file)
+    const csvData = `channel,name,category,description
+3,GUIDELO,Guide,Interactive channel guide for navigating TV services.
+6,ABC,Entertainment,National network offering dramas, comedies, news, and reality shows.
+7,ABC2,Entertainment,Secondary ABC channel with additional programming and local content.
+8,CBS,Entertainment,Features dramas, sitcoms, news, and sports events.
+10,FOX,Entertainment,Provides a mix of dramas, reality TV, sports, and news.
+12,NBC,Entertainment,Offers popular shows, sports, and national news broadcasts.
+13,NBC2,Entertainment,Secondary NBC channel with varied programming and local focus.
+14,CW,Entertainment,Airs youth-oriented dramas, comedies, and reality shows.
+15,CW2,Entertainment,Additional CW channel with similar programming and specials.
+16,PBS,Educational,Public broadcasting with educational, cultural, and documentary programs.
+17,PBS2,Educational,Secondary PBS channel with more educational content and kids' shows.
+36,ION,Entertainment,Features syndicated shows, movies, and original dramas.
+37,METV,Entertainment,Classic TV network with retro shows and nostalgic programming.
+38,MYNET,Entertainment,Offers syndicated series, sports, and movies.
+41,TELEM,International,Spanish-language network with telenovelas, news, and sports.
+42,UNIMAS,International,Spanish-language channel with movies, sports, and dramas.
+43,UNV,International,Spanish-language network with entertainment and news.
+44,DYSTR,Entertainment,Daystar provides Christian programming and inspirational content.
+45,TBN,Religious,Christian network with sermons, talk shows, and family-friendly content.
+51,RSN,Sports,Regional sports network covering local teams and events.
+52,RSN,Sports,Additional regional sports channel for local games and analysis.
+57,GUIDED1,Guide,Additional interactive channel guide service.
+58,USA,Entertainment,Features dramas, comedies, and live sports events.
+59,AETV,Entertainment,Reality TV and documentaries focusing on real-life stories.
+60,TNT,Entertainment,Airs dramas, movies, and major sports events.
+61,TBS,Entertainment,Comedy-focused channel with sitcoms and movies.
+62,AMC,Movies,Features classic and contemporary films and original series.
+63,DSC,Educational,Discovery Channel offers science, nature, and adventure documentaries.
+64,HISTORY,Educational,Documentaries and series on historical events and figures.
+65,FX,Entertainment,Original dramas, comedies, and blockbuster movies.
+66,BBCA,Entertainment,British programming including dramas, comedies, and sci-fi.
+67,SYFY,Entertainment,Science fiction, fantasy, and horror series and films.
+68,TRUTV,Entertainment,Reality shows and comedic programming.
+69,COMEDY,Entertainment,Comedy Central airs stand-up, sketches, and sitcoms.
+70,PAR,Entertainment,Paramount Network offers dramas and reality shows.
+71,VH1,Music,Music videos, reality shows, and pop culture programming.
+72,MTV,Music,Music videos, reality TV, and youth-oriented series.
+73,TVLAND,Entertainment,Classic and modern sitcoms with a nostalgic feel.
+75,HALL,Movies,Heartwarming movies and family-friendly series.
+76,NGC,Educational,National Geographic features wildlife and cultural documentaries.
+77,APL,Educational,Animal Planet focuses on animal-related shows and documentaries.
+78,SCIENCE,Educational,Science Channel explores technology, space, and innovation.
+79,AHC,Educational,American Heroes Channel covers military history and stories.
+80,HGTV,Lifestyle,Home and garden renovation and design shows.
+81,FOOD,Lifestyle,Food Network offers cooking shows and culinary competitions.
+82,TRAV,Lifestyle,Travel Channel showcases destinations and adventure travel.
+83,TLC,Lifestyle,Reality shows on family, lifestyle, and personal stories.
+84,BRAVO,Entertainment,Reality TV, dramas, and lifestyle programming.
+85,EI,Entertainment,E! focuses on celebrity news and pop culture shows.
+86,LIFE,Movies,Lifetime airs women-centric movies and dramas.
+87,OWN,Lifestyle,Oprah Winfrey Network with inspirational and lifestyle content.
+88,BET,Entertainment,Black Entertainment Television offers music, series, and movies.
+89,OVATION,Entertainment,Arts and culture programming with films and performances.
+90,CNN,News,24/7 news covering global events and politics.
+91,FNC,News,Fox News Channel provides conservative news and commentary.
+92,MSNBC,News,News and analysis with a progressive perspective.
+93,HLN,News,Headline News offers crime stories and news updates.
+94,CNBC,News,Business and financial news and talk shows.
+95,FBN,News,Fox Business Network covers markets and economic news.
+96,BLOOM,News,Bloomberg Television focuses on global finance and business.
+97,WEATH,News,Weather Channel provides forecasts and weather news.
+98,CSPAN,News,Public affairs and government proceedings coverage.
+99,DISN,Kids,Disney Channel offers family-friendly shows and movies.
+100,BOOM,Kids,Boomerang airs classic and new animated series.
+102,UKIDS,Kids,Universal Kids provides educational and fun kids' programming.
+103,NICKJR,Kids,Nick Jr. offers preschool-friendly shows and learning content.
+104,NICK,Kids,Nickelodeon features animated and live-action kids' shows.
+105,TOON,Kids,Cartoon Network airs animated series and movies.
+106,DFC,Kids,Disney Junior provides programming for young children.
+107,CMT,Music,Country Music Television with music videos and shows.
+108,GACF,Lifestyle,Great American Country focuses on country lifestyle and music.
+109,ESPN,Sports,Leading sports network with live events and analysis.
+110,ESPN2,Sports,Secondary ESPN channel with additional sports coverage.
+111,GUIDED2,Guide,Another interactive channel guide service.
+112,TNF,Sports,Thursday Night Football broadcasts NFL games.
+113,SEC,Sports,SEC Network covers Southeastern Conference sports.
+114,FS1,Sports,Fox Sports 1 offers live sports and commentary.
+115,FS2,Sports,Fox Sports 2 provides extended sports coverage.
+116,MT,Music,MTV with music videos and reality programming.
+117,TCM,Movies,Turner Classic Movies airs classic films.
+118,HSN,Shopping,Home Shopping Network for retail and product showcases.
+119,EWTN,Religious,Global Catholic network with religious programming.
+120,SHOPHQ,Shopping,Shopping channel with jewelry, electronics, and more.
+121,QVC,Shopping,Retail channel offering a variety of products.
+122,CNNE,International,Spanish-language CNN with global news.
+123,NEWSNTN,News,NewsNation provides balanced news coverage.
+124,MTV2,Music,MTV2 focuses on music videos and alternative content.
+125,MTVCLAS,Music,MTV Classic airs retro music videos and shows.
+126,UP,Religious,Uplifting family-friendly movies and series.
+128,RFDHD,Lifestyle,Rural-focused programming on farming and country life.
+129,VICE,Entertainment,Documentaries and series on culture and lifestyle.
+130,FYI,Lifestyle,Reality and lifestyle shows on diverse topics.
+131,DEST,Lifestyle,Destination America explores American culture and travel.
+132,ID,Educational,Investigation Discovery focuses on true crime stories.
+133,ACUWTHR,News,AccuWeather provides detailed weather forecasts.
+134,COOK,Lifestyle,Cooking Channel offers recipes and culinary shows.
+135,OXYGEN,Entertainment,True crime and women-focused reality shows.
+136,WE,Entertainment,WE tv offers reality shows and dramas.
+137,POP,Entertainment,Pop culture-focused shows and light entertainment.
+138,GSN,Entertainment,Game Show Network with classic and new game shows.
+139,LOGO,Entertainment,LGBTQ+-focused programming and movies.
+140,DLC,Educational,Discovery Life covers health and real-life stories.
+141,BHER,Entertainment,BET Her offers content for Black women.
+142,TVONE,Entertainment,Programming focused on African American culture.
+143,BBCWLD,News,BBC World News delivers global news coverage.
+144,NIKTON,Kids,Nicktoons airs animated Nickelodeon series.
+145,TNCK,Kids,TeenNick targets teens with shows and movies.
+147,MTVLIVE,Music,MTV Live broadcasts live music performances.
+148,RVLT,Entertainment,Revolt focuses on hip-hop culture and music.
+149,FUSE,Music,Music videos and pop culture programming.
+150,INSP,Religious,Inspirational programming with family values.
+151,SUNDANC,Movies,SundanceTV airs independent films and series.
+154,LMN,Movies,Lifetime Movie Network with drama and thriller films.
+155,IFC,Movies,Independent Film Channel showcases indie films.
+156,HMM,Movies,Hallmark Movies & Mysteries with mystery films.
+157,BETSOUL,Music,Soul and R&B music videos and programming.
+159,BYUTV,Religious,Family-friendly content from Brigham Young University.
+161,IMPCNET,Movies,Impact Network offers faith-based and family content.
+162,MAGN,Lifestyle,Magnolia Network focuses on home and lifestyle shows.
+163,MTVU,Music,MTV University targets college audiences with music.
+164,NEWSMX,International,Newsmax provides conservative news and talk shows.
+165,BIGTEN,Sports,Big Ten Network covers college sports events.
+166,ACC,Sports,ACC Network focuses on Atlantic Coast Conference sports.
+174,GUIDESP,Guide,Spanish-language interactive channel guide.
+175,BEIN,Sports,beIN Sports covers international soccer and sports.
+177,CBSSN,Sports,CBS Sports Network with college sports and analysis.
+187,ESPND,International,Spanish-language ESPN with sports coverage.
+189,ESPNEWS,Sports,ESPN News provides sports updates and highlights.
+190,ESPNU,Sports,ESPN U focuses on college sports and events.
+191,FXDEP,Sports,Fox Deportes offers Spanish-language sports.
+196,GOLF,Sports,Golf Channel covers professional golf tournaments.
+197,MLBN,Sports,MLB Network with baseball games and analysis.
+198,MLBNSZ,Sports,MLB Network Strike Zone for live baseball highlights.
+199,NBATV,Sports,NBA TV covers basketball games and news.
+200,NFLNET,Sports,NFL Network with football games and analysis.
+201,NFLNRZ,Sports,NFL RedZone provides live NFL game coverage.
+202,NHLNET,Sports,NHL Network covers hockey games and news.
+203,COWBOY,Lifestyle,Cowboy Channel focuses on rodeo and western lifestyle.
+204,OUTD,Sports,Outdoor Channel covers hunting and fishing.
+211,SEC2,Sports,Secondary SEC channel for additional sports coverage.
+212,TENNIS,Sports,Tennis Channel covers professional tennis events.
+213,TVG,Sports,TVG focuses on horse racing and betting.
+214,TUDN,International,Spanish-language sports network with soccer focus.
+215,WILLOW,Sports,Willow TV covers international cricket matches.`;
+
+    // Parse CSV data
+    function parseCSV(csv) {
+        const lines = csv.split('\n');
+        const headers = lines[0].split(',');
+        const result = [];
+
+        for (let i = 1; i < lines.length; i++) {
+            if (!lines[i]) continue;
+
+            const obj = {};
+            const currentline = lines[i].split(',');
+
+            for (let j = 0; j < headers.length; j++) {
+                obj[headers[j]] = currentline[j];
+            }
+
+            result.push(obj);
+        }
+
+        return result;
     }
 
-    // Filter channels based on search and category
-    function filterChannels() {
-      const searchTerm = searchInput.value.toLowerCase();
-      const activeCategoryBtn = categoryFilter.querySelector('.category-btn.active');
-      const activeCategory = activeCategoryBtn ? activeCategoryBtn.dataset.category : 'all';
-      
-      const filteredChannels = channels.filter(channel => {
-        // Category filter
-        if (activeCategory !== 'all' && channel.category.toLowerCase() !== activeCategory) {
-          return false;
-        }
+    // Display channels in table
+    function displayChannels(channels) {
+        const tableBody = document.getElementById('channelTableBody');
+        const cardsContainer = document.getElementById('channelCards');
         
-        // Search term filter
-        if (searchTerm) {
-          const searchContent = `${channel.channel} ${channel.name} ${channel.category} ${channel.description}`.toLowerCase();
-          return searchContent.includes(searchTerm);
+        tableBody.innerHTML = '';
+        cardsContainer.innerHTML = '';
+
+        if (channels.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="4">No channels found matching your criteria</td></tr>';
+            cardsContainer.innerHTML = '<div class="channel-card"><div class="channel-card-name">No channels found matching your criteria</div></div>';
+            return;
         }
-        
-        return true;
-      });
-      
-      renderChannels(filteredChannels);
-    }
 
-    // Event listeners
-    searchInput.addEventListener('input', filterChannels);
+        channels.forEach(channel => {
+            // Table row
+            const row = document.createElement('tr');
+            row.setAttribute('data-category', channel.category.toLowerCase());
 
-    categoryFilter.addEventListener('click', (e) => {
-      if (e.target.classList.contains('category-btn')) {
-        categoryFilter.querySelectorAll('.category-btn').forEach(btn => {
-          btn.classList.remove('active');
+            row.innerHTML = `
+                <td class="channel-number" data-label="Channel">${channel.channel}</td>
+                <td class="channel-name" data-label="Name">${channel.name}</td>
+                <td class="channel-category" data-label="Category">${channel.category}</td>
+                <td data-label="Description">${channel.description}</td>
+            `;
+
+            tableBody.appendChild(row);
+            
+            // Card element
+            const card = document.createElement('div');
+            card.className = 'channel-card';
+            card.setAttribute('data-category', channel.category.toLowerCase());
+            
+            card.innerHTML = `
+                <div class="channel-card-header">
+                    <span class="channel-card-number">${channel.channel}</span>
+                    <span class="channel-card-category">${channel.category}</span>
+                </div>
+                <div class="channel-card-name">${channel.name}</div>
+                <div>${channel.description}</div>
+            `;
+            
+            cardsContainer.appendChild(card);
         });
-        e.target.classList.add('active');
-        filterChannels();
-      }
-    });
+    }
 
-    resetBtn.addEventListener('click', () => {
-      searchInput.value = '';
-      categoryFilter.querySelectorAll('.category-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      categoryFilter.querySelector('[data-category="all"]').classList.add('active');
-      filterChannels();
-    });
+    // Generate category filters
+    function generateCategoryFilters(channels) {
+        const categories = new Set();
+        const filterContainer = document.getElementById('categoryFilter');
 
-    // Initial render
-    renderChannels(channels);
-  </script>
+        // Extract all unique categories
+        channels.forEach(channel => {
+            categories.add(channel.category);
+        });
+
+        // Create "All" button
+        const allButton = document.createElement('button');
+        allButton.className = 'category-btn active';
+        allButton.textContent = 'All';
+        allButton.onclick = () => filterChannels('all');
+        filterContainer.appendChild(allButton);
+
+        // Create buttons for each category
+        categories.forEach(category => {
+            const button = document.createElement('button');
+            button.className = 'category-btn';
+            button.textContent = category;
+            button.onclick = () => filterChannels(category.toLowerCase());
+            filterContainer.appendChild(button);
+        });
+    }
+
+    // Search functionality
+    function searchChannels() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toUpperCase();
+        
+        // Filter table rows
+        const tableRows = document.querySelectorAll('#channelTable tbody tr');
+        tableRows.forEach(row => {
+            let found = false;
+            const tds = row.getElementsByTagName('td');
+            
+            for (let j = 0; j < tds.length; j++) {
+                const td = tds[j];
+                if (td) {
+                    const txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().includes(filter)) {
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            
+            row.style.display = found ? '' : 'none';
+        });
+        
+        // Filter cards
+        const cards = document.querySelectorAll('.channel-card');
+        cards.forEach(card => {
+            let found = false;
+            const textContent = card.textContent || card.innerText;
+            
+            if (textContent.toUpperCase().includes(filter)) {
+                found = true;
+            }
+            
+            card.style.display = found ? '' : 'none';
+        });
+    }
+
+    // Filter by category
+    function filterChannels(category) {
+        const tableRows = document.querySelectorAll('#channelTable tbody tr');
+        const cards = document.querySelectorAll('.channel-card');
+        const buttons = document.querySelectorAll('.category-btn');
+
+        // Update active button
+        buttons.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.textContent.toLowerCase() === category ||
+               (btn.textContent === 'All' && category === 'all')) {
+                btn.classList.add('active');
+            }
+        });
+
+        // Filter table rows and cards
+        tableRows.forEach(row => {
+            if (category === 'all') {
+                row.style.display = '';
+            } else {
+                row.style.display = row.dataset.category === category ? '' : 'none';
+            }
+        });
+        
+        cards.forEach(card => {
+            if (category === 'all') {
+                card.style.display = '';
+            } else {
+                card.style.display = card.dataset.category === category ? '' : 'none';
+            }
+        });
+    }
+
+    // Toggle between card and table view
+    function setupViewToggle() {
+        const cardViewBtn = document.getElementById('cardViewBtn');
+        const tableViewBtn = document.getElementById('tableViewBtn');
+        const cardsContainer = document.getElementById('channelCards');
+        const tableContainer = document.querySelector('.table-container');
+        
+        cardViewBtn.addEventListener('click', () => {
+            cardViewBtn.classList.add('active');
+            tableViewBtn.classList.remove('active');
+            cardsContainer.style.display = 'block';
+            tableContainer.style.display = 'none';
+        });
+        
+        tableViewBtn.addEventListener('click', () => {
+            tableViewBtn.classList.add('active');
+            cardViewBtn.classList.remove('active');
+            tableContainer.style.display = 'block';
+            cardsContainer.style.display = 'none';
+        });
+    }
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+        // Parse the CSV data
+        const channels = parseCSV(csvData);
+
+        // Display channels and generate filters
+        displayChannels(channels);
+        generateCategoryFilters(channels);
+        setupViewToggle();
+        
+        // Setup search functionality with debounce
+        let searchTimeout;
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', () => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(searchChannels, 300);
+        });
+
+        // If you were loading from an actual CSV file, you would use:
+        /*
+        fetch('Comfort_Suites_TV_Channel_Guide_Structured.csv')
+            .then(response => response.text())
+            .then(csv => {
+                const channels = parseCSV(csv);
+                displayChannels(channels);
+                generateCategoryFilters(channels);
+                setupViewToggle();
+            })
+            .catch(error => {
+                console.error('Error loading CSV:', error);
+                document.getElementById('channelTableBody').innerHTML =
+                    '<tr><td colspan="4">Error loading channel guide. Please try again later.</td></tr>';
+                document.getElementById('channelCards').innerHTML =
+                    '<div class="channel-card"><div class="channel-card-name">Error loading channel guide. Please try again later.</div></div>';
+            });
+        */
+    });
+</script>
 </body>
 </html>
